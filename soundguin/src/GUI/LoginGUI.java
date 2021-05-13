@@ -11,6 +11,10 @@ import java.util.logging.Logger;
  */
 public class LoginGUI extends javax.swing.JFrame {
 
+    AdminGUI adminGUI = new AdminGUI();
+    UserGUI userGUI = new UserGUI();
+    SignupGUI signupGUI = new SignupGUI();
+    
     private DbHelper helper = new DbHelper();
     private Connection connection = null;
     private Statement statement = null;
@@ -42,6 +46,8 @@ public class LoginGUI extends javax.swing.JFrame {
         fldUserPassword = new javax.swing.JPasswordField();
         cbUserLogin = new javax.swing.JCheckBox();
         lblUserWarning = new javax.swing.JLabel();
+        lblSignup = new javax.swing.JLabel();
+        btnSignup = new javax.swing.JButton();
         pnlAdminLogin = new javax.swing.JPanel();
         lblAdminEmail = new javax.swing.JLabel();
         lblAdminPassword = new javax.swing.JLabel();
@@ -53,7 +59,7 @@ public class LoginGUI extends javax.swing.JFrame {
         lblLogin = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Soundguin");
+        setTitle("Soundguin Login");
         setLocation(new java.awt.Point(500, 150));
         setResizable(false);
 
@@ -70,6 +76,11 @@ public class LoginGUI extends javax.swing.JFrame {
         lblUserPassword.setText("Parola:");
 
         btnUserLogin.setText("Giriş");
+        btnUserLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUserLoginActionPerformed(evt);
+            }
+        });
 
         fldUserEmail.setFont(new java.awt.Font("Verdana", 1, 10)); // NOI18N
         fldUserEmail.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -92,33 +103,57 @@ public class LoginGUI extends javax.swing.JFrame {
         lblUserWarning.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblUserWarning.setText("Giriş Yap");
 
+        lblSignup.setFont(new java.awt.Font("Verdana", 1, 10)); // NOI18N
+        lblSignup.setForeground(new java.awt.Color(255, 255, 255));
+        lblSignup.setText("Hesabınız yok mu?");
+
+        btnSignup.setText("Kaydol");
+        btnSignup.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSignupActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlUserLoginLayout = new javax.swing.GroupLayout(pnlUserLogin);
         pnlUserLogin.setLayout(pnlUserLoginLayout);
         pnlUserLoginLayout.setHorizontalGroup(
             pnlUserLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlUserLoginLayout.createSequentialGroup()
-                .addGap(180, 180, 180)
-                .addComponent(btnUserLogin)
-                .addContainerGap(205, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlUserLoginLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblUserWarning, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnSignup)
+                .addContainerGap())
+            .addGroup(pnlUserLoginLayout.createSequentialGroup()
                 .addGap(41, 41, 41)
                 .addGroup(pnlUserLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblUserEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
                     .addComponent(lblUserPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pnlUserLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(fldUserEmail)
+                    .addComponent(fldUserEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
                     .addComponent(fldUserPassword))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cbUserLogin)
                 .addGap(14, 14, 14))
-            .addComponent(lblUserWarning, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlUserLoginLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(lblSignup)
+                .addContainerGap())
+            .addGroup(pnlUserLoginLayout.createSequentialGroup()
+                .addGap(182, 182, 182)
+                .addComponent(btnUserLogin)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlUserLoginLayout.setVerticalGroup(
             pnlUserLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlUserLoginLayout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(lblUserWarning, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(lblSignup)
+                .addGap(4, 4, 4)
+                .addGroup(pnlUserLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblUserWarning, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSignup))
                 .addGap(27, 27, 27)
                 .addGroup(pnlUserLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblUserEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
@@ -129,9 +164,9 @@ public class LoginGUI extends javax.swing.JFrame {
                         .addComponent(cbUserLogin)
                         .addComponent(lblUserPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(fldUserPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addComponent(btnUserLogin)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addGap(24, 24, 24))
         );
 
         jTabbedPane1.addTab("Kullanıcı Giriş", pnlUserLogin);
@@ -178,10 +213,6 @@ public class LoginGUI extends javax.swing.JFrame {
         pnlAdminLogin.setLayout(pnlAdminLoginLayout);
         pnlAdminLoginLayout.setHorizontalGroup(
             pnlAdminLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlAdminLoginLayout.createSequentialGroup()
-                .addGap(180, 180, 180)
-                .addComponent(btnAdminLogin)
-                .addContainerGap(205, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlAdminLoginLayout.createSequentialGroup()
                 .addGap(41, 41, 41)
                 .addGroup(pnlAdminLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -189,12 +220,16 @@ public class LoginGUI extends javax.swing.JFrame {
                     .addComponent(lblAdminPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pnlAdminLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(fldAdminUsername)
+                    .addComponent(fldAdminUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
                     .addComponent(fldAdminPassword))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cbAdminLogin)
                 .addGap(14, 14, 14))
             .addComponent(lblAdminWarning, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlAdminLoginLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnAdminLogin)
+                .addGap(187, 187, 187))
         );
         pnlAdminLoginLayout.setVerticalGroup(
             pnlAdminLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -266,7 +301,8 @@ public class LoginGUI extends javax.swing.JFrame {
             while(resultSet.next()) {
                 if(username.equals(resultSet.getString("username"))
                         && password.equals(resultSet.getString("password"))) {
-                    System.out.println("Başarılı");
+                    setVisible(false);
+                    adminGUI.setVisible(true);
                 } else {
                     lblAdminWarning.setText("Kullanıcı adı veya parola hatalı!");
                 }
@@ -292,6 +328,31 @@ public class LoginGUI extends javax.swing.JFrame {
             fldAdminPassword.setEchoChar('•');
         }
     }//GEN-LAST:event_cbAdminLoginActionPerformed
+
+    private void btnUserLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserLoginActionPerformed
+        try {
+            connection = helper.getConnection();
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery("select email, password from users");
+            String email = fldUserEmail.getText();
+            String password = String.valueOf(fldUserPassword.getPassword());
+            while(resultSet.next()) {
+                if(email.equals(resultSet.getString("email"))
+                        && password.equals(resultSet.getString("password"))) {
+                    setVisible(false);
+                    userGUI.setVisible(true);
+                } else {
+                    lblUserWarning.setText("E-mail veya parola hatalı!");
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(LoginGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnUserLoginActionPerformed
+
+    private void btnSignupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignupActionPerformed
+        signupGUI.setVisible(true);
+    }//GEN-LAST:event_btnSignupActionPerformed
 
     /**
      * @param args the command line arguments
@@ -330,6 +391,7 @@ public class LoginGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdminLogin;
+    private javax.swing.JButton btnSignup;
     private javax.swing.JButton btnUserLogin;
     private javax.swing.JCheckBox cbAdminLogin;
     private javax.swing.JCheckBox cbUserLogin;
@@ -342,6 +404,7 @@ public class LoginGUI extends javax.swing.JFrame {
     private javax.swing.JLabel lblAdminPassword;
     private javax.swing.JLabel lblAdminWarning;
     private javax.swing.JLabel lblLogin;
+    private javax.swing.JLabel lblSignup;
     private javax.swing.JLabel lblUserEmail;
     private javax.swing.JLabel lblUserPassword;
     private javax.swing.JLabel lblUserWarning;
