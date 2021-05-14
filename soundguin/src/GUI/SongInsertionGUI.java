@@ -226,11 +226,11 @@ public class SongInsertionGUI extends javax.swing.JFrame {
         boolean control = admin.insertSong(
             fldName.getText(),
             fldDate.getText(),
-            fldArtist.getText(),
-            fldAlbum.getText(),
-            fldGenre.getText(),
+            Integer.parseInt(fldArtist.getText()),
+            Integer.parseInt(fldAlbum.getText()),
+            Integer.parseInt(fldGenre.getText()),
             fldDuration.getText(),
-            fldPlays.getText());
+            Integer.parseInt(fldPlays.getText()));
 
         if(control) {
             fldName.setText(null);
@@ -242,7 +242,7 @@ public class SongInsertionGUI extends javax.swing.JFrame {
             fldPlays.setText(null);
         }
 
-        adminGUI.updateArtist();
+        adminGUI.updateSongTable();
     }//GEN-LAST:event_btnAddActionPerformed
 
     /**

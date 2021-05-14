@@ -161,7 +161,7 @@ public class ArtistInsertionGUI extends javax.swing.JFrame {
             fldCountry.setText(null);
         }
 
-        adminGUI.updateArtist();
+        adminGUI.updateArtistTable();
     }//GEN-LAST:event_btnAddActionPerformed
 
     /**

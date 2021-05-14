@@ -203,7 +203,7 @@ public class UserInsertionGUI extends javax.swing.JFrame {
                 fldSname.getText(), 
                 fldEmail.getText(), 
                 fldPassword.getText(), 
-                fldSubscription.getText(), 
+                Integer.parseInt(fldSubscription.getText()), 
                 fldCountry.getText());
         
         if(control) {
@@ -215,7 +215,7 @@ public class UserInsertionGUI extends javax.swing.JFrame {
             fldCountry.setText(null);
         }
         
-        adminGUI.updateUser();
+        adminGUI.updateUserTable();
     }//GEN-LAST:event_btnAddActionPerformed
 
     /**

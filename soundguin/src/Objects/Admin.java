@@ -22,6 +22,7 @@ public class Admin {
     Connection connection = null;
     Statement statement = null;
     ResultSet resultSet;
+    PreparedStatement preparedStatement = null;
     
     public Admin() {
         try {
@@ -139,13 +140,39 @@ public class Admin {
         return subsTypes;
     }
     
-    public boolean insertUser(String name, String sname, String email, String password, String subs, String country) {
-        String query = "insert into users (name, sname, email, password, subscription, country) "
-                + "values('"+name+"','"+sname+"','"+email+"','"+password+"','"+subs+"','"+country+"')";
+    public ArrayList<SongGenre> getGenreList() {
+        ArrayList<SongGenre> genres = new ArrayList<SongGenre>();
+        try {
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery("select * from genres");
+            while(resultSet.next()) {
+                genres.add(new SongGenre(
+                        resultSet.getInt("id"),
+                        resultSet.getString("name")
+                ));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return genres;
+    }
+    
+    public boolean insertUser(String name, String sname, String email, String password, int subs, String country) {
+        String query = "insert into users (name, sname, email, password, subscription, country) values(?,?,?,?,?,?)";
         int key=0;
         try {
             statement = connection.createStatement();
-            statement.executeUpdate(query);
+            preparedStatement = connection.prepareStatement(query);
+            statement = connection.createStatement();
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, name);
+            preparedStatement.setString(2, sname);
+            preparedStatement.setString(3, email);
+            preparedStatement.setString(4, password);
+            preparedStatement.setInt(5, subs);
+            preparedStatement.setString(6, country);
+            preparedStatement.executeUpdate();
             key = 1;  
         } catch (SQLException ex) {
             Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
@@ -182,12 +209,15 @@ public class Admin {
     }
     
     public boolean insertArtist(String name, String sname, String country) {
-        String query = "insert into artists (name, sname, country) "
-                + "values('"+name+"','"+sname+"','"+country+"')";
+        String query = "insert into artists (name, sname, country) values(?,?,?)";
         int key=0;
         try {
             statement = connection.createStatement();
-            statement.executeUpdate(query);
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, name);
+            preparedStatement.setString(2, sname);
+            preparedStatement.setString(3, country);
+            preparedStatement.executeUpdate();
             key = 1;  
         } catch (SQLException ex) {
             Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
@@ -223,13 +253,20 @@ public class Admin {
         
     }
     
-    public boolean insertSong(String name, String date, String artist, String album, String genre, String duration, String plays) {
-        String query = "insert into songs (name, date, artistID, albumID, genreID, duration, plays) "
-                + "values('"+name+"','"+date+"','"+artist+"','"+album+"','"+genre+"','"+duration+"','"+plays+"')";
+    public boolean insertSong(String name, String date, int artist, int album, int genre, String duration, int plays) {
+        String query = "insert into songs (name, date, artistID, albumID, genreID, duration, plays) values(?,?,?,?,?,?,?)";
         int key=0;
         try {
             statement = connection.createStatement();
-            statement.executeUpdate(query);
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, name);
+            preparedStatement.setString(2, date);
+            preparedStatement.setInt(3, artist);
+            preparedStatement.setInt(4, album);
+            preparedStatement.setInt(5, genre);
+            preparedStatement.setString(6, duration);
+            preparedStatement.setInt(7, plays);
+            preparedStatement.executeUpdate();
             key = 1;  
         } catch (SQLException ex) {
             Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);

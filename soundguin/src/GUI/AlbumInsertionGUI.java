@@ -202,7 +202,7 @@ public class AlbumInsertionGUI extends javax.swing.JFrame {
             fldGenre.setText(null);
         }
 
-        adminGUI.updateArtist();
+        adminGUI.updateAlbumTable();
     }//GEN-LAST:event_btnAddActionPerformed
 
     /**

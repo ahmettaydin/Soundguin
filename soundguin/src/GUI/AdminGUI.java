@@ -23,6 +23,10 @@ public class AdminGUI extends javax.swing.JFrame {
     private Object[] albumData = null;
     private DefaultTableModel artistModel = null;
     private Object[] artistData = null;
+    private DefaultTableModel subsModel = null;
+    private Object[] subsData = null;
+    private DefaultTableModel genreModel = null;
+    private Object[] genreData = null;
     UserInsertionGUI userInsertionGUI = new UserInsertionGUI(this);
     ArtistInsertionGUI artistInsertionGUI = new ArtistInsertionGUI(this);
     SongInsertionGUI songInsertionGUI = new SongInsertionGUI(this);
@@ -37,6 +41,8 @@ public class AdminGUI extends javax.swing.JFrame {
         setArtistModel();
         setSongModel();
         setAlbumModel();
+        setSubsModel();
+        setGenreModel();
     }
 
     /**
@@ -61,7 +67,7 @@ public class AdminGUI extends javax.swing.JFrame {
         pnlSongs = new javax.swing.JPanel();
         scrllSongs = new javax.swing.JScrollPane();
         tblSongs = new javax.swing.JTable();
-        lblLogo1 = new javax.swing.JLabel();
+        lblLogoSong = new javax.swing.JLabel();
         btnInsertSong = new javax.swing.JButton();
         fldIDSong = new javax.swing.JTextField();
         btnDeleteSong = new javax.swing.JButton();
@@ -82,6 +88,14 @@ public class AdminGUI extends javax.swing.JFrame {
         fldIDAlbum = new javax.swing.JTextField();
         btnDeleteAlbum = new javax.swing.JButton();
         lblIDAlbum = new javax.swing.JLabel();
+        pnlOthers = new javax.swing.JPanel();
+        scrllSubs = new javax.swing.JScrollPane();
+        tblSubs = new javax.swing.JTable();
+        lblLogoOthers = new javax.swing.JLabel();
+        lblSubs = new javax.swing.JLabel();
+        lblGenres = new javax.swing.JLabel();
+        scrllGenres = new javax.swing.JScrollPane();
+        tblGenres = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Soundguin  Admin");
@@ -183,8 +197,8 @@ public class AdminGUI extends javax.swing.JFrame {
         ));
         scrllSongs.setViewportView(tblSongs);
 
-        lblLogo1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblLogo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logoSmall.png"))); // NOI18N
+        lblLogoSong.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblLogoSong.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logoSmall.png"))); // NOI18N
 
         btnInsertSong.setText("Yeni Ekle");
         btnInsertSong.addActionListener(new java.awt.event.ActionListener() {
@@ -216,7 +230,7 @@ public class AdminGUI extends javax.swing.JFrame {
                 .addGroup(pnlSongsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(scrllSongs, javax.swing.GroupLayout.DEFAULT_SIZE, 955, Short.MAX_VALUE)
                     .addGroup(pnlSongsLayout.createSequentialGroup()
-                        .addComponent(lblLogo1)
+                        .addComponent(lblLogoSong)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lblIDSong)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -233,7 +247,7 @@ public class AdminGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(pnlSongsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlSongsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(lblLogo1)
+                        .addComponent(lblLogoSong)
                         .addGroup(pnlSongsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnInsertSong)
                             .addComponent(fldIDSong, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -402,6 +416,81 @@ public class AdminGUI extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Albümler", pnlAlbums);
 
+        pnlOthers.setBackground(new java.awt.Color(153, 0, 153));
+
+        tblSubs.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        scrllSubs.setViewportView(tblSubs);
+
+        lblLogoOthers.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblLogoOthers.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logoSmall.png"))); // NOI18N
+
+        lblSubs.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        lblSubs.setForeground(new java.awt.Color(255, 255, 255));
+        lblSubs.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblSubs.setText("Abonelik Türü");
+
+        lblGenres.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        lblGenres.setForeground(new java.awt.Color(255, 255, 255));
+        lblGenres.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblGenres.setText("Şarkı Türü");
+
+        tblGenres.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        scrllGenres.setViewportView(tblGenres);
+
+        javax.swing.GroupLayout pnlOthersLayout = new javax.swing.GroupLayout(pnlOthers);
+        pnlOthers.setLayout(pnlOthersLayout);
+        pnlOthersLayout.setHorizontalGroup(
+            pnlOthersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlOthersLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlOthersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(scrllSubs, javax.swing.GroupLayout.DEFAULT_SIZE, 955, Short.MAX_VALUE)
+                    .addComponent(lblSubs, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblGenres, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(pnlOthersLayout.createSequentialGroup()
+                        .addComponent(lblLogoOthers)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(scrllGenres))
+                .addContainerGap())
+        );
+        pnlOthersLayout.setVerticalGroup(
+            pnlOthersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlOthersLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblLogoOthers)
+                .addGap(18, 18, 18)
+                .addComponent(lblSubs)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(scrllSubs, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lblGenres)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(scrllGenres, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(385, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Diğer Tablolar", pnlOthers);
+
         javax.swing.GroupLayout pnlAdminLayout = new javax.swing.GroupLayout(pnlAdmin);
         pnlAdmin.setLayout(pnlAdminLayout);
         pnlAdminLayout.setHorizontalGroup(
@@ -439,7 +528,7 @@ public class AdminGUI extends javax.swing.JFrame {
 
     private void btnDeleteUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteUserActionPerformed
         boolean control = admin.deleteUser(Integer.parseInt(fldID.getText()));
-        updateUser();
+        updateUserTable();
         
         if(control) {
             fldID.setText(null);
@@ -452,7 +541,7 @@ public class AdminGUI extends javax.swing.JFrame {
 
     private void btnDeleteSongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteSongActionPerformed
         boolean control = admin.deleteSong(Integer.parseInt(fldIDSong.getText()));
-        updateSong();
+        updateSongTable();
         
         if(control) {
             fldIDSong.setText(null);
@@ -465,7 +554,7 @@ public class AdminGUI extends javax.swing.JFrame {
 
     private void btnDeleteArtistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteArtistActionPerformed
         boolean control = admin.deleteArtist(Integer.parseInt(fldIDArtist.getText()));
-        updateArtist();
+        updateArtistTable();
         
         if(control) {
             fldIDArtist.setText(null);
@@ -478,7 +567,7 @@ public class AdminGUI extends javax.swing.JFrame {
 
     private void btnDeleteAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteAlbumActionPerformed
         boolean control = admin.deleteAlbum(Integer.parseInt(fldIDAlbum.getText()));
-        updateAlbum();
+        updateAlbumTable();
         
         if(control) {
             fldIDAlbum.setText(null);
@@ -520,7 +609,7 @@ public class AdminGUI extends javax.swing.JFrame {
         });
     }
     
-    public void setUserModel() {
+    private void setUserModel() {
         userModel = new DefaultTableModel();
         Object[] colUser = new Object[7];
         colUser[0] = "ID";
@@ -551,7 +640,7 @@ public class AdminGUI extends javax.swing.JFrame {
         tblUsers.setModel(userModel);
     }
     
-    public void setSongModel() {
+    private void setSongModel() {
         songModel = new DefaultTableModel();
         Object[] colSong = new Object[8];
         colSong[0] = "ID";
@@ -581,7 +670,7 @@ public class AdminGUI extends javax.swing.JFrame {
         tblSongs.setModel(songModel);
     }
     
-    public void setAlbumModel() {
+    private void setAlbumModel() {
         albumModel = new DefaultTableModel();
         Object[] colAlbum = new Object[6];
         colAlbum[0] = "ID";
@@ -608,7 +697,7 @@ public class AdminGUI extends javax.swing.JFrame {
         tblAlbums.setModel(albumModel);
     }
     
-    public void setArtistModel() {
+    private void setArtistModel() {
         artistModel = new DefaultTableModel();
         Object[] colArtist = new Object[4];
         colArtist[0] = "ID";
@@ -630,7 +719,43 @@ public class AdminGUI extends javax.swing.JFrame {
         tblArtists.setModel(artistModel);
     }
     
-    public void updateUser() {
+    private void setSubsModel() {
+        subsModel = new DefaultTableModel();
+        Object[] colSubs = new Object[2];
+        colSubs[0] = "ID";
+        colSubs[1] = "Abonelik";
+        
+        subsModel.setColumnIdentifiers(colSubs);
+        subsData = new Object[2];
+        for(int i=0; i<admin.getSubsTypeList().size(); i++) {
+            subsData[0] = admin.getSubsTypeList().get(i).getId();
+            subsData[1] = admin.getSubsTypeList().get(i).getName();
+            
+            subsModel.addRow(subsData);
+        }
+        
+        tblSubs.setModel(subsModel);
+    }
+    
+    private void setGenreModel() {
+        genreModel = new DefaultTableModel();
+        Object[] colGenre = new Object[2];
+        colGenre[0] = "ID";
+        colGenre[1] = "Name";
+        
+        genreModel.setColumnIdentifiers(colGenre);
+        genreData = new Object[2];
+        for(int i=0; i<admin.getGenreList().size(); i++) {
+            genreData[0] = admin.getGenreList().get(i).getId();
+            genreData[1] = admin.getGenreList().get(i).getName();
+            
+            genreModel.addRow(genreData);
+        }
+        
+        tblGenres.setModel(genreModel);
+    }
+    
+    public void updateUserTable() {
         DefaultTableModel clearModel = (DefaultTableModel)tblUsers.getModel();
         clearModel.setRowCount(0);
         
@@ -646,7 +771,7 @@ public class AdminGUI extends javax.swing.JFrame {
         }
     }
     
-    public void updateArtist() {
+    public void updateArtistTable() {
         DefaultTableModel clearModel = (DefaultTableModel)tblArtists.getModel();
         clearModel.setRowCount(0);
         
@@ -659,7 +784,7 @@ public class AdminGUI extends javax.swing.JFrame {
         }
     }
     
-    public void updateSong() {
+    public void updateSongTable() {
         DefaultTableModel clearModel = (DefaultTableModel)tblSongs.getModel();
         clearModel.setRowCount(0);
         
@@ -676,8 +801,8 @@ public class AdminGUI extends javax.swing.JFrame {
         }
     }
     
-    public void updateAlbum() {
-        DefaultTableModel clearModel = (DefaultTableModel)tblSongs.getModel();
+    public void updateAlbumTable() {
+        DefaultTableModel clearModel = (DefaultTableModel)tblAlbums.getModel();
         clearModel.setRowCount(0);
         
         for(int i=0; i<admin.getAlbumList().size(); i++) {
@@ -705,26 +830,34 @@ public class AdminGUI extends javax.swing.JFrame {
     private javax.swing.JTextField fldIDArtist;
     private javax.swing.JTextField fldIDSong;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JLabel lblGenres;
     private javax.swing.JLabel lblIDAlbum;
     private javax.swing.JLabel lblIDArtist;
     private javax.swing.JLabel lblIDSong;
     private javax.swing.JLabel lblIDUser;
     private javax.swing.JLabel lblLogo;
-    private javax.swing.JLabel lblLogo1;
     private javax.swing.JLabel lblLogoAlbum;
     private javax.swing.JLabel lblLogoArtist;
+    private javax.swing.JLabel lblLogoOthers;
+    private javax.swing.JLabel lblLogoSong;
+    private javax.swing.JLabel lblSubs;
     private javax.swing.JPanel pnlAdmin;
     private javax.swing.JPanel pnlAlbums;
     private javax.swing.JPanel pnlArtists;
+    private javax.swing.JPanel pnlOthers;
     private javax.swing.JPanel pnlSongs;
     private javax.swing.JPanel pnlUsers;
     private javax.swing.JScrollPane scrllAlbums;
     private javax.swing.JScrollPane scrllArtists;
+    private javax.swing.JScrollPane scrllGenres;
     private javax.swing.JScrollPane scrllSongs;
+    private javax.swing.JScrollPane scrllSubs;
     private javax.swing.JScrollPane scrllUsers;
     private javax.swing.JTable tblAlbums;
     private javax.swing.JTable tblArtists;
+    private javax.swing.JTable tblGenres;
     private javax.swing.JTable tblSongs;
+    private javax.swing.JTable tblSubs;
     private javax.swing.JTable tblUsers;
     // End of variables declaration//GEN-END:variables
 }
