@@ -15,13 +15,22 @@ public class ArtistInsertionGUI extends javax.swing.JFrame {
 
     Admin admin = new Admin();
     AdminGUI adminGUI;
+    private int status;
+    private int id;
     
     /**
      * Creates new form ArtistInsertionGUI
      */
-    public ArtistInsertionGUI(AdminGUI adminGUI) {
+    public ArtistInsertionGUI(AdminGUI adminGUI, int id, int status) {
         this.adminGUI = adminGUI;
+        this.id = id;
+        this.status = status;
         initComponents();
+        
+        if(this.status == 1) {
+            btnAdd.setText("Güncelle");
+            setTitle("Sanatçı Güncelle");
+        }
     }
     
     public ArtistInsertionGUI() {
@@ -150,17 +159,30 @@ public class ArtistInsertionGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        boolean control = admin.insertArtist(
-            fldName.getText(),
-            fldSname.getText(),
-            fldCountry.getText());
+        if(status == 0) {
+            boolean control = admin.insertArtist(
+                fldName.getText(),
+                fldSname.getText(),
+                fldCountry.getText());
 
-        if(control) {
-            fldName.setText(null);
-            fldSname.setText(null);
-            fldCountry.setText(null);
+            if(control) {
+                fldName.setText(null);
+                fldSname.setText(null);
+                fldCountry.setText(null);
+            }
+        } else if(status == 1) {
+            boolean control = admin.updateArtist(
+                    id,
+                    fldName.getText(), 
+                    fldSname.getText(), 
+                    fldCountry.getText());
+            
+            if(control) {
+                fldName.setText(null);
+                fldSname.setText(null);
+                fldCountry.setText(null);
+            }
         }
-
         adminGUI.updateArtistTable();
     }//GEN-LAST:event_btnAddActionPerformed
 

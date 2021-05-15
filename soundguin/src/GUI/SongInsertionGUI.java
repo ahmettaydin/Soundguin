@@ -15,13 +15,22 @@ public class SongInsertionGUI extends javax.swing.JFrame {
 
     Admin admin = new Admin();
     AdminGUI adminGUI;
+    private int id;
+    private int status;
     
     /**
      * Creates new form SongInsertionGUI
      */
-    public SongInsertionGUI(AdminGUI adminGUI) {
+    public SongInsertionGUI(AdminGUI adminGUI, int id, int status) {
         this.adminGUI = adminGUI;
+        this.id = id;
+        this.status = status;
         initComponents();
+        
+        if(status==1) {
+            btnAdd.setText("Güncelle");
+            setTitle("Şarkı Güncelle");
+        }
     }
     
     public SongInsertionGUI() {
@@ -223,25 +232,47 @@ public class SongInsertionGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        boolean control = admin.insertSong(
-            fldName.getText(),
-            fldDate.getText(),
-            Integer.parseInt(fldArtist.getText()),
-            Integer.parseInt(fldAlbum.getText()),
-            Integer.parseInt(fldGenre.getText()),
-            fldDuration.getText(),
-            Integer.parseInt(fldPlays.getText()));
+        if(status==0) {
+            boolean control = admin.insertSong(
+                fldName.getText(),
+                fldDate.getText(),
+                Integer.parseInt(fldArtist.getText()),
+                Integer.parseInt(fldAlbum.getText()),
+                Integer.parseInt(fldGenre.getText()),
+                fldDuration.getText(),
+                Integer.parseInt(fldPlays.getText()));
 
-        if(control) {
-            fldName.setText(null);
-            fldDate.setText(null);
-            fldArtist.setText(null);
-            fldAlbum.setText(null);
-            fldGenre.setText(null);
-            fldDuration.setText(null);
-            fldPlays.setText(null);
+            if(control) {
+                fldName.setText(null);
+                fldDate.setText(null);
+                fldArtist.setText(null);
+                fldAlbum.setText(null);
+                fldGenre.setText(null);
+                fldDuration.setText(null);
+                fldPlays.setText(null);
+            }
+        } else if(status==1) {
+            boolean control = admin.updateSong(
+                id,
+                fldName.getText(),
+                fldDate.getText(),
+                Integer.parseInt(fldArtist.getText()),
+                Integer.parseInt(fldAlbum.getText()),
+                Integer.parseInt(fldGenre.getText()),
+                fldDuration.getText(),
+                Integer.parseInt(fldPlays.getText()));
+
+            if(control) {
+                fldName.setText(null);
+                fldDate.setText(null);
+                fldArtist.setText(null);
+                fldAlbum.setText(null);
+                fldGenre.setText(null);
+                fldDuration.setText(null);
+                fldPlays.setText(null);
+            }
         }
-
+        
         adminGUI.updateSongTable();
     }//GEN-LAST:event_btnAddActionPerformed
 

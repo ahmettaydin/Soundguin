@@ -5,7 +5,7 @@
     <Property name="defaultCloseOperation" type="int" value="3"/>
     <Property name="title" type="java.lang.String" value="Soundguin  Admin"/>
     <Property name="location" type="java.awt.Point" editor="org.netbeans.beaninfo.editors.PointEditor">
-      <Point value="[275, 75]"/>
+      <Point value="[275, 25]"/>
     </Property>
     <Property name="resizable" type="boolean" value="false"/>
   </Properties>
@@ -98,6 +98,8 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="fldID" min="-2" pref="50" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="btnUpdateUser" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
                                   <Component id="btnDeleteUser" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="btnInsertUser" min="-2" max="-2" attributes="0"/>
@@ -111,19 +113,18 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="lblLogo" min="-2" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="btnInsertUser" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="fldID" alignment="3" min="-2" pref="21" max="-2" attributes="0"/>
-                                      <Component id="btnDeleteUser" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="lblLogo" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="btnInsertUser" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="fldID" alignment="3" min="-2" pref="21" max="-2" attributes="0"/>
+                                  <Component id="btnDeleteUser" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblIDUser" alignment="3" min="-2" pref="21" max="-2" attributes="0"/>
+                                  <Component id="btnUpdateUser" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="lblIDUser" alignment="1" min="-2" pref="21" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="scrllUsers" pref="567" max="32767" attributes="0"/>
+                          <Component id="scrllUsers" pref="592" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -191,6 +192,14 @@
                     <Property name="text" type="java.lang.String" value="ID:"/>
                   </Properties>
                 </Component>
+                <Component class="javax.swing.JButton" name="btnUpdateUser">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="G&#xfc;ncelle"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUpdateUserActionPerformed"/>
+                  </Events>
+                </Component>
               </SubComponents>
             </Container>
             <Container class="javax.swing.JPanel" name="pnlSongs">
@@ -221,6 +230,8 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="fldIDSong" min="-2" pref="50" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="btnUpdateSong" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
                                   <Component id="btnDeleteSong" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="btnInsertSong" min="-2" max="-2" attributes="0"/>
@@ -234,19 +245,18 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                  <Component id="lblLogoSong" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                                      <Component id="btnInsertSong" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="fldIDSong" alignment="3" min="-2" pref="21" max="-2" attributes="0"/>
-                                      <Component id="btnDeleteSong" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="lblLogoSong" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                                  <Component id="btnInsertSong" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="fldIDSong" alignment="3" min="-2" pref="21" max="-2" attributes="0"/>
+                                  <Component id="btnDeleteSong" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblIDSong" alignment="3" min="-2" pref="21" max="-2" attributes="0"/>
+                                  <Component id="btnUpdateSong" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="lblIDSong" alignment="1" min="-2" pref="21" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="scrllSongs" pref="567" max="32767" attributes="0"/>
+                          <Component id="scrllSongs" pref="592" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -314,6 +324,14 @@
                     <Property name="text" type="java.lang.String" value="ID:"/>
                   </Properties>
                 </Component>
+                <Component class="javax.swing.JButton" name="btnUpdateSong">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="G&#xfc;ncelle"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUpdateSongActionPerformed"/>
+                  </Events>
+                </Component>
               </SubComponents>
             </Container>
             <Container class="javax.swing.JPanel" name="pnlArtists">
@@ -344,6 +362,8 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="fldIDArtist" min="-2" pref="50" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="btnUpdateArtist" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
                                   <Component id="btnDeleteArtist" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="btnInsertArtist" min="-2" max="-2" attributes="0"/>
@@ -357,19 +377,18 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                  <Component id="lblLogoArtist" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                                      <Component id="btnInsertArtist" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="fldIDArtist" alignment="3" min="-2" pref="21" max="-2" attributes="0"/>
-                                      <Component id="btnDeleteArtist" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="lblLogoArtist" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                                  <Component id="btnInsertArtist" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnDeleteArtist" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnUpdateArtist" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="fldIDArtist" alignment="3" min="-2" pref="21" max="-2" attributes="0"/>
+                                  <Component id="lblIDArtist" alignment="3" min="-2" pref="21" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="lblIDArtist" alignment="1" min="-2" pref="21" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="scrllArtists" pref="567" max="32767" attributes="0"/>
+                          <Component id="scrllArtists" pref="592" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -437,6 +456,14 @@
                     <Property name="text" type="java.lang.String" value="ID:"/>
                   </Properties>
                 </Component>
+                <Component class="javax.swing.JButton" name="btnUpdateArtist">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="G&#xfc;ncelle"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUpdateArtistActionPerformed"/>
+                  </Events>
+                </Component>
               </SubComponents>
             </Container>
             <Container class="javax.swing.JPanel" name="pnlAlbums">
@@ -467,6 +494,8 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="fldIDAlbum" min="-2" pref="50" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="btnUpdateAlbum" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
                                   <Component id="btnDeleteAlbum" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="btnInsertAlbum" min="-2" max="-2" attributes="0"/>
@@ -480,19 +509,18 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                  <Component id="lblLogoAlbum" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                                      <Component id="btnInsertAlbum" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="fldIDAlbum" alignment="3" min="-2" pref="21" max="-2" attributes="0"/>
-                                      <Component id="btnDeleteAlbum" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="lblLogoAlbum" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                                  <Component id="btnInsertAlbum" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="fldIDAlbum" alignment="3" min="-2" pref="21" max="-2" attributes="0"/>
+                                  <Component id="btnDeleteAlbum" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblIDAlbum" alignment="3" min="-2" pref="21" max="-2" attributes="0"/>
+                                  <Component id="btnUpdateAlbum" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="lblIDAlbum" alignment="1" min="-2" pref="21" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="scrllAlbums" pref="567" max="32767" attributes="0"/>
+                          <Component id="scrllAlbums" pref="592" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -560,6 +588,14 @@
                     <Property name="text" type="java.lang.String" value="ID:"/>
                   </Properties>
                 </Component>
+                <Component class="javax.swing.JButton" name="btnUpdateAlbum">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="G&#xfc;ncelle"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUpdateAlbumActionPerformed"/>
+                  </Events>
+                </Component>
               </SubComponents>
             </Container>
             <Container class="javax.swing.JPanel" name="pnlOthers">
@@ -585,11 +621,17 @@
                               <Component id="scrllSubs" pref="955" max="32767" attributes="0"/>
                               <Component id="lblSubs" max="32767" attributes="0"/>
                               <Component id="lblGenres" max="32767" attributes="0"/>
+                              <Component id="scrllGenres" max="32767" attributes="0"/>
+                              <Component id="lblPops" alignment="1" max="32767" attributes="0"/>
+                              <Component id="scrllPops" max="32767" attributes="0"/>
+                              <Component id="lblJazzes" max="32767" attributes="0"/>
+                              <Component id="scrllJazzes" max="32767" attributes="0"/>
+                              <Component id="lblClassics" max="32767" attributes="0"/>
                               <Group type="102" attributes="0">
                                   <Component id="lblLogoOthers" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
-                              <Component id="scrllGenres" max="32767" attributes="0"/>
+                              <Component id="scrllClassics" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -608,7 +650,19 @@
                           <Component id="lblGenres" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="scrllGenres" min="-2" pref="73" max="-2" attributes="0"/>
-                          <EmptySpace pref="385" max="32767" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="lblPops" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="scrllPops" min="-2" pref="90" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="lblJazzes" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="scrllJazzes" min="-2" pref="90" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="lblClassics" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="scrllClassics" min="-2" pref="90" max="-2" attributes="0"/>
+                          <EmptySpace pref="20" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -669,6 +723,96 @@
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
                     <Component class="javax.swing.JTable" name="tblGenres">
+                      <Properties>
+                        <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                          <Table columnCount="4" rowCount="4">
+                            <Column editable="true" title="Title 1" type="java.lang.Object"/>
+                            <Column editable="true" title="Title 2" type="java.lang.Object"/>
+                            <Column editable="true" title="Title 3" type="java.lang.Object"/>
+                            <Column editable="true" title="Title 4" type="java.lang.Object"/>
+                          </Table>
+                        </Property>
+                      </Properties>
+                    </Component>
+                  </SubComponents>
+                </Container>
+                <Component class="javax.swing.JLabel" name="lblPops">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Verdana" size="12" style="1"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                    </Property>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" value="Pop &#xc7;alma Listeleri"/>
+                  </Properties>
+                </Component>
+                <Container class="javax.swing.JScrollPane" name="scrllPops">
+
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                  <SubComponents>
+                    <Component class="javax.swing.JTable" name="tblPops">
+                      <Properties>
+                        <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                          <Table columnCount="4" rowCount="4">
+                            <Column editable="true" title="Title 1" type="java.lang.Object"/>
+                            <Column editable="true" title="Title 2" type="java.lang.Object"/>
+                            <Column editable="true" title="Title 3" type="java.lang.Object"/>
+                            <Column editable="true" title="Title 4" type="java.lang.Object"/>
+                          </Table>
+                        </Property>
+                      </Properties>
+                    </Component>
+                  </SubComponents>
+                </Container>
+                <Component class="javax.swing.JLabel" name="lblJazzes">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Verdana" size="12" style="1"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                    </Property>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" value="Jazz &#xc7;alma Listeleri"/>
+                  </Properties>
+                </Component>
+                <Container class="javax.swing.JScrollPane" name="scrllJazzes">
+
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                  <SubComponents>
+                    <Component class="javax.swing.JTable" name="tblJazzes">
+                      <Properties>
+                        <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                          <Table columnCount="4" rowCount="4">
+                            <Column editable="true" title="Title 1" type="java.lang.Object"/>
+                            <Column editable="true" title="Title 2" type="java.lang.Object"/>
+                            <Column editable="true" title="Title 3" type="java.lang.Object"/>
+                            <Column editable="true" title="Title 4" type="java.lang.Object"/>
+                          </Table>
+                        </Property>
+                      </Properties>
+                    </Component>
+                  </SubComponents>
+                </Container>
+                <Component class="javax.swing.JLabel" name="lblClassics">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Verdana" size="12" style="1"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                    </Property>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" value="Klasik &#xc7;alma Listeleri"/>
+                  </Properties>
+                </Component>
+                <Container class="javax.swing.JScrollPane" name="scrllClassics">
+
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                  <SubComponents>
+                    <Component class="javax.swing.JTable" name="tblClassics">
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                           <Table columnCount="4" rowCount="4">

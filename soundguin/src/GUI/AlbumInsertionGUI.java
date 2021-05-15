@@ -15,14 +15,22 @@ public class AlbumInsertionGUI extends javax.swing.JFrame {
 
     Admin admin = new Admin();
     AdminGUI adminGUI;
+    private int status;
+    private int id;
     
     /**
      * Creates new form AlbumInsertionGUI
      */
-    public AlbumInsertionGUI(AdminGUI adminGUI) {
+    public AlbumInsertionGUI(AdminGUI adminGUI, int id, int status) {
         this.adminGUI = adminGUI;
-        
+        this.id = id;
+        this.status = status;
         initComponents();
+        
+        if(status == 1) {
+            btnAdd.setText("Güncelle");
+            setTitle("Albüm Güncelle");
+        }
     }
     
     public AlbumInsertionGUI() {
@@ -187,19 +195,37 @@ public class AlbumInsertionGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        boolean control = admin.insertAlbum(
-            fldName.getText(),
-            fldDate.getText(),
-            fldArtist.getText(),
-            fldSong.getText(),
-            fldGenre.getText());
+        if(status == 0) {
+            boolean control = admin.insertAlbum(
+                fldName.getText(),
+                fldDate.getText(),
+                Integer.parseInt(fldArtist.getText()),
+                Integer.parseInt(fldSong.getText()),
+                Integer.parseInt(fldGenre.getText()));
 
-        if(control) {
-            fldName.setText(null);
-            fldDate.setText(null);
-            fldArtist.setText(null);
-            fldSong.setText(null);
-            fldGenre.setText(null);
+            if(control) {
+                fldName.setText(null);
+                fldDate.setText(null);
+                fldArtist.setText(null);
+                fldSong.setText(null);
+                fldGenre.setText(null);
+            }
+        } else if(status == 1) {
+            boolean control = admin.updateAlbum(
+                    id, 
+                    fldName.getText(), 
+                    fldDate.getText(), 
+                    Integer.parseInt(fldArtist.getText()),
+                    Integer.parseInt(fldSong.getText()),
+                    Integer.parseInt(fldGenre.getText()));
+            
+            if(control) {
+                fldName.setText(null);
+                fldDate.setText(null);
+                fldArtist.setText(null);
+                fldSong.setText(null);
+                fldGenre.setText(null);
+            }
         }
 
         adminGUI.updateAlbumTable();

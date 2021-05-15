@@ -187,6 +187,36 @@ public class Admin {
         }
     }
     
+    public boolean updateUser(int id, String name, String sname, String email, String password, int subs, String country) {
+        String query = "update users set name=?, sname=?, email=?, password=?, subscription=?, country=? where id=?";
+        int key=0;
+        try {
+            statement = connection.createStatement();
+            preparedStatement = connection.prepareStatement(query);
+            statement = connection.createStatement();
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, name);
+            preparedStatement.setString(2, sname);
+            preparedStatement.setString(3, email);
+            preparedStatement.setString(4, password);
+            preparedStatement.setInt(5, subs);
+            preparedStatement.setString(6, country);
+            preparedStatement.setInt(7, id);
+            preparedStatement.executeUpdate();
+            key = 1;  
+        } catch (SQLException ex) {
+            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        if(key==1) {
+            JOptionPane.showMessageDialog(null, "Başarılı");
+            return true;
+        } else {
+            JOptionPane.showMessageDialog(null, "Başarısız");
+            return false;
+        }
+    }
+    
     public boolean deleteUser(int id) {
         String query = "delete from users where id ="+id; 
         int key = 0;
@@ -217,6 +247,31 @@ public class Admin {
             preparedStatement.setString(1, name);
             preparedStatement.setString(2, sname);
             preparedStatement.setString(3, country);
+            preparedStatement.executeUpdate();
+            key = 1;  
+        } catch (SQLException ex) {
+            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        if(key==1) {
+            JOptionPane.showMessageDialog(null, "Başarılı");
+            return true;
+        } else {
+            JOptionPane.showMessageDialog(null, "Başarısız");
+            return false;
+        }
+    }
+    
+    public boolean updateArtist(int id, String name, String sname, String country) {
+        String query = "update artists set name = ?, sname = ?, country = ? where id = ?";
+        int key=0;
+        try {
+            statement = connection.createStatement();
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, name);
+            preparedStatement.setString(2, sname);
+            preparedStatement.setString(3, country);
+            preparedStatement.setInt(4, id);
             preparedStatement.executeUpdate();
             key = 1;  
         } catch (SQLException ex) {
@@ -281,6 +336,35 @@ public class Admin {
         }
     }
     
+    public boolean updateSong(int id, String name, String date, int artist, int album, int genre, String duration, int plays) {
+        String query = "update songs set name=?, date=?, artistID=?, albumID=?, genreID=?, duration=?, plays=? where id=?";
+        int key=0;
+        try {
+            statement = connection.createStatement();
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, name);
+            preparedStatement.setString(2, date);
+            preparedStatement.setInt(3, artist);
+            preparedStatement.setInt(4, album);
+            preparedStatement.setInt(5, genre);
+            preparedStatement.setString(6, duration);
+            preparedStatement.setInt(7, plays);
+            preparedStatement.setInt(8, id);
+            preparedStatement.executeUpdate();
+            key = 1;  
+        } catch (SQLException ex) {
+            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        if(key==1) {
+            JOptionPane.showMessageDialog(null, "Başarılı");
+            return true;
+        } else {
+            JOptionPane.showMessageDialog(null, "Başarısız");
+            return false;
+        }
+    }
+    
     public boolean deleteSong(int id) {
         String query = "delete from songs where id ="+id; 
         int key = 0;
@@ -302,13 +386,45 @@ public class Admin {
         
     }
     
-    public boolean insertAlbum(String name, String date, String artist, String song, String genre) {
-        String query = "insert into albums (name, date, artistID, songID, genreID) "
-                + "values('"+name+"','"+date+"','"+artist+"','"+song+"','"+genre+"')";
+    public boolean insertAlbum(String name, String date, int artist, int song, int genre) {
+        String query = "insert into albums (name, date, artistID, songID, genreID) values(?,?,?,?,?)";
         int key=0;
         try {
             statement = connection.createStatement();
-            statement.executeUpdate(query);
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, name);
+            preparedStatement.setString(2, date);
+            preparedStatement.setInt(3, artist);
+            preparedStatement.setInt(4, song);
+            preparedStatement.setInt(5, genre);
+            preparedStatement.executeUpdate();
+            key = 1;  
+        } catch (SQLException ex) {
+            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        if(key==1) {
+            JOptionPane.showMessageDialog(null, "Başarılı");
+            return true;
+        } else {
+            JOptionPane.showMessageDialog(null, "Başarısız");
+            return false;
+        }
+    }
+    
+    public boolean updateAlbum(int id, String name, String date, int artist, int song, int genre) {
+        String query = "update albums set name = ?, date = ?, artistID = ?, songID = ?, genreID  = ? where id = ?";
+        int key=0;
+        try {
+            statement = connection.createStatement();
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, name);
+            preparedStatement.setString(2, date);
+            preparedStatement.setInt(3, artist);
+            preparedStatement.setInt(4, song);
+            preparedStatement.setInt(5, genre);
+            preparedStatement.setInt(6, id);
+            preparedStatement.executeUpdate();
             key = 1;  
         } catch (SQLException ex) {
             Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);

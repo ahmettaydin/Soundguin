@@ -27,10 +27,10 @@ public class AdminGUI extends javax.swing.JFrame {
     private Object[] subsData = null;
     private DefaultTableModel genreModel = null;
     private Object[] genreData = null;
-    UserInsertionGUI userInsertionGUI = new UserInsertionGUI(this);
-    ArtistInsertionGUI artistInsertionGUI = new ArtistInsertionGUI(this);
-    SongInsertionGUI songInsertionGUI = new SongInsertionGUI(this);
-    AlbumInsertionGUI albumInsertionGUI = new AlbumInsertionGUI(this);
+    UserInsertionGUI userInsertionGUI;
+    ArtistInsertionGUI artistInsertionGUI;
+    SongInsertionGUI songInsertionGUI;
+    AlbumInsertionGUI albumInsertionGUI;
     
     /**
      * Creates new form AdminGUI
@@ -64,6 +64,7 @@ public class AdminGUI extends javax.swing.JFrame {
         fldID = new javax.swing.JTextField();
         btnDeleteUser = new javax.swing.JButton();
         lblIDUser = new javax.swing.JLabel();
+        btnUpdateUser = new javax.swing.JButton();
         pnlSongs = new javax.swing.JPanel();
         scrllSongs = new javax.swing.JScrollPane();
         tblSongs = new javax.swing.JTable();
@@ -72,6 +73,7 @@ public class AdminGUI extends javax.swing.JFrame {
         fldIDSong = new javax.swing.JTextField();
         btnDeleteSong = new javax.swing.JButton();
         lblIDSong = new javax.swing.JLabel();
+        btnUpdateSong = new javax.swing.JButton();
         pnlArtists = new javax.swing.JPanel();
         scrllArtists = new javax.swing.JScrollPane();
         tblArtists = new javax.swing.JTable();
@@ -80,6 +82,7 @@ public class AdminGUI extends javax.swing.JFrame {
         fldIDArtist = new javax.swing.JTextField();
         btnDeleteArtist = new javax.swing.JButton();
         lblIDArtist = new javax.swing.JLabel();
+        btnUpdateArtist = new javax.swing.JButton();
         pnlAlbums = new javax.swing.JPanel();
         scrllAlbums = new javax.swing.JScrollPane();
         tblAlbums = new javax.swing.JTable();
@@ -88,6 +91,7 @@ public class AdminGUI extends javax.swing.JFrame {
         fldIDAlbum = new javax.swing.JTextField();
         btnDeleteAlbum = new javax.swing.JButton();
         lblIDAlbum = new javax.swing.JLabel();
+        btnUpdateAlbum = new javax.swing.JButton();
         pnlOthers = new javax.swing.JPanel();
         scrllSubs = new javax.swing.JScrollPane();
         tblSubs = new javax.swing.JTable();
@@ -96,10 +100,19 @@ public class AdminGUI extends javax.swing.JFrame {
         lblGenres = new javax.swing.JLabel();
         scrllGenres = new javax.swing.JScrollPane();
         tblGenres = new javax.swing.JTable();
+        lblPops = new javax.swing.JLabel();
+        scrllPops = new javax.swing.JScrollPane();
+        tblPops = new javax.swing.JTable();
+        lblJazzes = new javax.swing.JLabel();
+        scrllJazzes = new javax.swing.JScrollPane();
+        tblJazzes = new javax.swing.JTable();
+        lblClassics = new javax.swing.JLabel();
+        scrllClassics = new javax.swing.JScrollPane();
+        tblClassics = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Soundguin  Admin");
-        setLocation(new java.awt.Point(275, 75));
+        setLocation(new java.awt.Point(275, 25));
         setResizable(false);
 
         pnlAdmin.setBackground(new java.awt.Color(204, 0, 204));
@@ -143,6 +156,13 @@ public class AdminGUI extends javax.swing.JFrame {
         lblIDUser.setForeground(new java.awt.Color(255, 255, 255));
         lblIDUser.setText("ID:");
 
+        btnUpdateUser.setText("Güncelle");
+        btnUpdateUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateUserActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlUsersLayout = new javax.swing.GroupLayout(pnlUsers);
         pnlUsers.setLayout(pnlUsersLayout);
         pnlUsersLayout.setHorizontalGroup(
@@ -158,6 +178,8 @@ public class AdminGUI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(fldID, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnUpdateUser)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnDeleteUser)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnInsertUser)))
@@ -167,16 +189,16 @@ public class AdminGUI extends javax.swing.JFrame {
             pnlUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlUsersLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnlUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(lblLogo)
-                        .addGroup(pnlUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnInsertUser)
-                            .addComponent(fldID, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnDeleteUser)))
-                    .addComponent(lblIDUser, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(pnlUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblLogo)
+                    .addGroup(pnlUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnInsertUser)
+                        .addComponent(fldID, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnDeleteUser)
+                        .addComponent(lblIDUser, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnUpdateUser)))
                 .addGap(18, 18, 18)
-                .addComponent(scrllUsers, javax.swing.GroupLayout.DEFAULT_SIZE, 567, Short.MAX_VALUE)
+                .addComponent(scrllUsers, javax.swing.GroupLayout.DEFAULT_SIZE, 592, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -221,6 +243,13 @@ public class AdminGUI extends javax.swing.JFrame {
         lblIDSong.setForeground(new java.awt.Color(255, 255, 255));
         lblIDSong.setText("ID:");
 
+        btnUpdateSong.setText("Güncelle");
+        btnUpdateSong.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateSongActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlSongsLayout = new javax.swing.GroupLayout(pnlSongs);
         pnlSongs.setLayout(pnlSongsLayout);
         pnlSongsLayout.setHorizontalGroup(
@@ -236,6 +265,8 @@ public class AdminGUI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(fldIDSong, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnUpdateSong)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnDeleteSong)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnInsertSong)))
@@ -245,16 +276,16 @@ public class AdminGUI extends javax.swing.JFrame {
             pnlSongsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlSongsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnlSongsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlSongsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(lblLogoSong)
-                        .addGroup(pnlSongsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnInsertSong)
-                            .addComponent(fldIDSong, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnDeleteSong)))
-                    .addComponent(lblIDSong, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(pnlSongsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblLogoSong)
+                    .addGroup(pnlSongsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnInsertSong)
+                        .addComponent(fldIDSong, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnDeleteSong)
+                        .addComponent(lblIDSong, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnUpdateSong)))
                 .addGap(18, 18, 18)
-                .addComponent(scrllSongs, javax.swing.GroupLayout.DEFAULT_SIZE, 567, Short.MAX_VALUE)
+                .addComponent(scrllSongs, javax.swing.GroupLayout.DEFAULT_SIZE, 592, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -299,6 +330,13 @@ public class AdminGUI extends javax.swing.JFrame {
         lblIDArtist.setForeground(new java.awt.Color(255, 255, 255));
         lblIDArtist.setText("ID:");
 
+        btnUpdateArtist.setText("Güncelle");
+        btnUpdateArtist.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateArtistActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlArtistsLayout = new javax.swing.GroupLayout(pnlArtists);
         pnlArtists.setLayout(pnlArtistsLayout);
         pnlArtistsLayout.setHorizontalGroup(
@@ -314,6 +352,8 @@ public class AdminGUI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(fldIDArtist, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnUpdateArtist)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnDeleteArtist)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnInsertArtist)))
@@ -323,16 +363,16 @@ public class AdminGUI extends javax.swing.JFrame {
             pnlArtistsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlArtistsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnlArtistsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlArtistsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(lblLogoArtist)
-                        .addGroup(pnlArtistsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnInsertArtist)
-                            .addComponent(fldIDArtist, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnDeleteArtist)))
-                    .addComponent(lblIDArtist, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(pnlArtistsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblLogoArtist)
+                    .addGroup(pnlArtistsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnInsertArtist)
+                        .addComponent(btnDeleteArtist)
+                        .addComponent(btnUpdateArtist)
+                        .addComponent(fldIDArtist, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblIDArtist, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addComponent(scrllArtists, javax.swing.GroupLayout.DEFAULT_SIZE, 567, Short.MAX_VALUE)
+                .addComponent(scrllArtists, javax.swing.GroupLayout.DEFAULT_SIZE, 592, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -377,6 +417,13 @@ public class AdminGUI extends javax.swing.JFrame {
         lblIDAlbum.setForeground(new java.awt.Color(255, 255, 255));
         lblIDAlbum.setText("ID:");
 
+        btnUpdateAlbum.setText("Güncelle");
+        btnUpdateAlbum.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateAlbumActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlAlbumsLayout = new javax.swing.GroupLayout(pnlAlbums);
         pnlAlbums.setLayout(pnlAlbumsLayout);
         pnlAlbumsLayout.setHorizontalGroup(
@@ -392,6 +439,8 @@ public class AdminGUI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(fldIDAlbum, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnUpdateAlbum)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnDeleteAlbum)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnInsertAlbum)))
@@ -401,16 +450,16 @@ public class AdminGUI extends javax.swing.JFrame {
             pnlAlbumsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlAlbumsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnlAlbumsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlAlbumsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(lblLogoAlbum)
-                        .addGroup(pnlAlbumsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnInsertAlbum)
-                            .addComponent(fldIDAlbum, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnDeleteAlbum)))
-                    .addComponent(lblIDAlbum, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(pnlAlbumsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblLogoAlbum)
+                    .addGroup(pnlAlbumsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnInsertAlbum)
+                        .addComponent(fldIDAlbum, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnDeleteAlbum)
+                        .addComponent(lblIDAlbum, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnUpdateAlbum)))
                 .addGap(18, 18, 18)
-                .addComponent(scrllAlbums, javax.swing.GroupLayout.DEFAULT_SIZE, 567, Short.MAX_VALUE)
+                .addComponent(scrllAlbums, javax.swing.GroupLayout.DEFAULT_SIZE, 592, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -457,6 +506,60 @@ public class AdminGUI extends javax.swing.JFrame {
         ));
         scrllGenres.setViewportView(tblGenres);
 
+        lblPops.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        lblPops.setForeground(new java.awt.Color(255, 255, 255));
+        lblPops.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblPops.setText("Pop Çalma Listeleri");
+
+        tblPops.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        scrllPops.setViewportView(tblPops);
+
+        lblJazzes.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        lblJazzes.setForeground(new java.awt.Color(255, 255, 255));
+        lblJazzes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblJazzes.setText("Jazz Çalma Listeleri");
+
+        tblJazzes.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        scrllJazzes.setViewportView(tblJazzes);
+
+        lblClassics.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        lblClassics.setForeground(new java.awt.Color(255, 255, 255));
+        lblClassics.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblClassics.setText("Klasik Çalma Listeleri");
+
+        tblClassics.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        scrllClassics.setViewportView(tblClassics);
+
         javax.swing.GroupLayout pnlOthersLayout = new javax.swing.GroupLayout(pnlOthers);
         pnlOthers.setLayout(pnlOthersLayout);
         pnlOthersLayout.setHorizontalGroup(
@@ -467,10 +570,16 @@ public class AdminGUI extends javax.swing.JFrame {
                     .addComponent(scrllSubs, javax.swing.GroupLayout.DEFAULT_SIZE, 955, Short.MAX_VALUE)
                     .addComponent(lblSubs, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblGenres, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(scrllGenres)
+                    .addComponent(lblPops, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(scrllPops)
+                    .addComponent(lblJazzes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(scrllJazzes)
+                    .addComponent(lblClassics, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(pnlOthersLayout.createSequentialGroup()
                         .addComponent(lblLogoOthers)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(scrllGenres))
+                    .addComponent(scrllClassics))
                 .addContainerGap())
         );
         pnlOthersLayout.setVerticalGroup(
@@ -486,7 +595,19 @@ public class AdminGUI extends javax.swing.JFrame {
                 .addComponent(lblGenres)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(scrllGenres, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(385, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(lblPops)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(scrllPops, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lblJazzes)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(scrllJazzes, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lblClassics)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(scrllClassics, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Diğer Tablolar", pnlOthers);
@@ -523,6 +644,7 @@ public class AdminGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnInsertUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertUserActionPerformed
+        userInsertionGUI = new UserInsertionGUI(this, 0, 0);
         userInsertionGUI.setVisible(true);
     }//GEN-LAST:event_btnInsertUserActionPerformed
 
@@ -536,6 +658,7 @@ public class AdminGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDeleteUserActionPerformed
 
     private void btnInsertSongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertSongActionPerformed
+        songInsertionGUI = new SongInsertionGUI(this, 0, 0);
         songInsertionGUI.setVisible(true);
     }//GEN-LAST:event_btnInsertSongActionPerformed
 
@@ -549,6 +672,7 @@ public class AdminGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDeleteSongActionPerformed
 
     private void btnInsertArtistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertArtistActionPerformed
+        artistInsertionGUI = new ArtistInsertionGUI(this, 0, 0);
         artistInsertionGUI.setVisible(true);
     }//GEN-LAST:event_btnInsertArtistActionPerformed
 
@@ -562,6 +686,7 @@ public class AdminGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDeleteArtistActionPerformed
 
     private void btnInsertAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertAlbumActionPerformed
+        albumInsertionGUI = new AlbumInsertionGUI(this, 0, 0);
         albumInsertionGUI.setVisible(true);
     }//GEN-LAST:event_btnInsertAlbumActionPerformed
 
@@ -573,6 +698,30 @@ public class AdminGUI extends javax.swing.JFrame {
             fldIDAlbum.setText(null);
         }
     }//GEN-LAST:event_btnDeleteAlbumActionPerformed
+
+    private void btnUpdateArtistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateArtistActionPerformed
+        int id = Integer.parseInt(fldIDArtist.getText());
+        artistInsertionGUI = new ArtistInsertionGUI(this, id, 1);
+        artistInsertionGUI.setVisible(true);
+    }//GEN-LAST:event_btnUpdateArtistActionPerformed
+
+    private void btnUpdateAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateAlbumActionPerformed
+        int id = Integer.parseInt(fldIDAlbum.getText());
+        albumInsertionGUI = new AlbumInsertionGUI(this, id, 1);
+        albumInsertionGUI.setVisible(true);
+    }//GEN-LAST:event_btnUpdateAlbumActionPerformed
+
+    private void btnUpdateSongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateSongActionPerformed
+        int id = Integer.parseInt(fldIDSong.getText());
+        songInsertionGUI = new SongInsertionGUI(this, id, 1);
+        songInsertionGUI.setVisible(true);
+    }//GEN-LAST:event_btnUpdateSongActionPerformed
+
+    private void btnUpdateUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateUserActionPerformed
+        int id = Integer.parseInt(fldID.getText());
+        userInsertionGUI = new UserInsertionGUI(this, id, 1);
+        userInsertionGUI.setVisible(true);
+    }//GEN-LAST:event_btnUpdateUserActionPerformed
 
     /**
      * @param args the command line arguments
@@ -627,12 +776,8 @@ public class AdminGUI extends javax.swing.JFrame {
             userData[1] = admin.getUserList().get(i).getName();
             userData[2] = admin.getUserList().get(i).getSname();
             userData[3] = admin.getUserList().get(i).getEmail();
-            userData[4] = admin.getUserList().get(i).getPassword();
-            for(int j=0; j<admin.getSubsTypeList().size(); j++) {
-                if(admin.getSubsTypeList().get(j).getId() == admin.getUserList().get(i).getSubscription()) {
-                    userData[5] = admin.getSubsTypeList().get(j).getName();
-                }
-            }
+            userData[4] = admin.getUserList().get(i).getPassword();         
+            userData[5] = admin.getUserList().get(i).getSubscription();              
             userData[6] = admin.getUserList().get(i).getCountry();
             userModel.addRow(userData);
         }
@@ -741,7 +886,7 @@ public class AdminGUI extends javax.swing.JFrame {
         genreModel = new DefaultTableModel();
         Object[] colGenre = new Object[2];
         colGenre[0] = "ID";
-        colGenre[1] = "Name";
+        colGenre[1] = "Tür";
         
         genreModel.setColumnIdentifiers(colGenre);
         genreData = new Object[2];
@@ -825,21 +970,28 @@ public class AdminGUI extends javax.swing.JFrame {
     private javax.swing.JButton btnInsertArtist;
     private javax.swing.JButton btnInsertSong;
     private javax.swing.JButton btnInsertUser;
+    private javax.swing.JButton btnUpdateAlbum;
+    private javax.swing.JButton btnUpdateArtist;
+    private javax.swing.JButton btnUpdateSong;
+    private javax.swing.JButton btnUpdateUser;
     private javax.swing.JTextField fldID;
     private javax.swing.JTextField fldIDAlbum;
     private javax.swing.JTextField fldIDArtist;
     private javax.swing.JTextField fldIDSong;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JLabel lblClassics;
     private javax.swing.JLabel lblGenres;
     private javax.swing.JLabel lblIDAlbum;
     private javax.swing.JLabel lblIDArtist;
     private javax.swing.JLabel lblIDSong;
     private javax.swing.JLabel lblIDUser;
+    private javax.swing.JLabel lblJazzes;
     private javax.swing.JLabel lblLogo;
     private javax.swing.JLabel lblLogoAlbum;
     private javax.swing.JLabel lblLogoArtist;
     private javax.swing.JLabel lblLogoOthers;
     private javax.swing.JLabel lblLogoSong;
+    private javax.swing.JLabel lblPops;
     private javax.swing.JLabel lblSubs;
     private javax.swing.JPanel pnlAdmin;
     private javax.swing.JPanel pnlAlbums;
@@ -849,13 +1001,19 @@ public class AdminGUI extends javax.swing.JFrame {
     private javax.swing.JPanel pnlUsers;
     private javax.swing.JScrollPane scrllAlbums;
     private javax.swing.JScrollPane scrllArtists;
+    private javax.swing.JScrollPane scrllClassics;
     private javax.swing.JScrollPane scrllGenres;
+    private javax.swing.JScrollPane scrllJazzes;
+    private javax.swing.JScrollPane scrllPops;
     private javax.swing.JScrollPane scrllSongs;
     private javax.swing.JScrollPane scrllSubs;
     private javax.swing.JScrollPane scrllUsers;
     private javax.swing.JTable tblAlbums;
     private javax.swing.JTable tblArtists;
+    private javax.swing.JTable tblClassics;
     private javax.swing.JTable tblGenres;
+    private javax.swing.JTable tblJazzes;
+    private javax.swing.JTable tblPops;
     private javax.swing.JTable tblSongs;
     private javax.swing.JTable tblSubs;
     private javax.swing.JTable tblUsers;

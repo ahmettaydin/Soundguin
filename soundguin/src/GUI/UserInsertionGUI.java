@@ -15,13 +15,22 @@ public class UserInsertionGUI extends javax.swing.JFrame {
     
     Admin admin = new Admin();
     AdminGUI adminGUI;
+    private int id;
+    private int status;
     
     /**
      * Creates new form UserInsertionGUI
      */
-    public UserInsertionGUI(AdminGUI adminGUI) {
+    public UserInsertionGUI(AdminGUI adminGUI, int id, int status) {
         this.adminGUI = adminGUI;
+        this.id = id;
+        this.status = status;
         initComponents();
+        
+        if(status==1) {
+            btnAdd.setText("Güncelle");
+            setTitle("Kullanıcı Güncelle");
+        }
     }
     
     public UserInsertionGUI() {
@@ -198,7 +207,8 @@ public class UserInsertionGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        boolean control = admin.insertUser(
+        if(status == 0) {
+            boolean control = admin.insertUser(
                 fldName.getText(), 
                 fldSname.getText(), 
                 fldEmail.getText(), 
@@ -206,14 +216,34 @@ public class UserInsertionGUI extends javax.swing.JFrame {
                 Integer.parseInt(fldSubscription.getText()), 
                 fldCountry.getText());
         
-        if(control) {
-            fldName.setText(null);
-            fldSname.setText(null);
-            fldEmail.setText(null);
-            fldPassword.setText(null);
-            fldSubscription.setText(null);
-            fldCountry.setText(null);
+            if(control) {
+                fldName.setText(null);
+                fldSname.setText(null);
+                fldEmail.setText(null);
+                fldPassword.setText(null);
+                fldSubscription.setText(null);
+                fldCountry.setText(null);
+            }
+        } else if(status==1) {
+            boolean control = admin.updateUser(
+                id,
+                fldName.getText(), 
+                fldSname.getText(), 
+                fldEmail.getText(), 
+                fldPassword.getText(), 
+                Integer.parseInt(fldSubscription.getText()), 
+                fldCountry.getText());
+        
+            if(control) {
+                fldName.setText(null);
+                fldSname.setText(null);
+                fldEmail.setText(null);
+                fldPassword.setText(null);
+                fldSubscription.setText(null);
+                fldCountry.setText(null);
+            }
         }
+        
         
         adminGUI.updateUserTable();
     }//GEN-LAST:event_btnAddActionPerformed
