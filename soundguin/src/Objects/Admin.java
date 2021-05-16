@@ -32,11 +32,160 @@ public class Admin {
         }
     }
     
+    public User getUser(int id) {
+        User user = null;
+        try {
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery("select * from users where id="+id);
+            while(resultSet.next()) {
+                user = new User(
+                        resultSet.getInt("id"), 
+                        resultSet.getString("name"), 
+                        resultSet.getString("sname"), 
+                        resultSet.getString("email"),
+                        resultSet.getString("password"),
+                        resultSet.getInt("subscription"),
+                        resultSet.getString("country")
+                );
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     
+        return user;
+    }
+    
+    public Song getSong(int id) {
+        Song song = null;
+        try {
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery("select * from songs where id ="+id);
+            while(resultSet.next()) {
+                song = new Song(
+                        resultSet.getInt("id"),
+                        resultSet.getString("name"),
+                        resultSet.getString("date"),
+                        resultSet.getInt("artistID"),
+                        resultSet.getInt("albumID"),
+                        resultSet.getInt("genreID"),
+                        resultSet.getString("duration"),
+                        resultSet.getInt("plays")
+                );
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return song;
+    }
+    
+    public Album getAlbum(int id) {
+        Album album = null;
+        try {
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery("select * from albums where id="+id);
+            while(resultSet.next()) {
+                album = new Album(
+                        resultSet.getInt("id"),
+                        resultSet.getString("name"),
+                        resultSet.getString("date"),
+                        resultSet.getInt("songID"),
+                        resultSet.getInt("artistID"),
+                        resultSet.getInt("genreID")
+                );
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return album;
+    }
+    
+    public Artist getArtist(int id) {
+        Artist artist = null;
+        
+        try {
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery("select * from artists where id="+id);
+            while(resultSet.next()) {
+                artist = new Artist(
+                        resultSet.getInt("id"), 
+                        resultSet.getString("name"),
+                        resultSet.getString("sname"),
+                        resultSet.getString("country")
+                );
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return artist;
+    }
+    
+    public SubsType getSubsType(int id) {
+        SubsType subsType = null;
+        try {
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery("select * from substype where id ="+id);
+            while(resultSet.next()) {
+                subsType = new SubsType(
+                        resultSet.getInt("id"), 
+                        resultSet.getString("type")
+                );
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return subsType;
+    }
+    
+    public SongGenre getGenre(int id) {
+        SongGenre genre = null;
+        try {
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery("select * from genres where id="+id);
+            while(resultSet.next()) {
+                genre = new SongGenre(
+                        resultSet.getInt("id"),
+                        resultSet.getString("name")
+                );
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return genre;
+    }
+    
     public ArrayList<User> getUserList() {
         ArrayList<User> users = new ArrayList<User>();
         try {
             statement = connection.createStatement();
             resultSet = statement.executeQuery("select * from users");
+            while(resultSet.next()) {
+                users.add(new User(
+                        resultSet.getInt("id"), 
+                        resultSet.getString("name"), 
+                        resultSet.getString("sname"), 
+                        resultSet.getString("email"),
+                        resultSet.getString("password"),
+                        resultSet.getInt("subscription"),
+                        resultSet.getString("country")
+                ));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     
+        return users;
+    }
+    
+    public ArrayList<User> getFollowList(int id) {
+        ArrayList<User> users = new ArrayList<User>();
+        try {
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery("select * from users where id in (select userID2 from follow where userID1 ="+id+")");
             while(resultSet.next()) {
                 users.add(new User(
                         resultSet.getInt("id"), 
@@ -458,6 +607,30 @@ public class Admin {
             return false;
         }
         
+    }
+    
+    public boolean insertFollow(int id1, int id2) {
+        String query = "insert into follow (userID1, userID2) values(?,?)";
+        
+        int key=0;
+        try {
+            statement = connection.createStatement();
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, id1);
+            preparedStatement.setInt(2, id2);
+            preparedStatement.executeUpdate();
+            key = 1;  
+        } catch (SQLException ex) {
+            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        if(key==1) {
+            JOptionPane.showMessageDialog(null, "Başarılı");
+            return true;
+        } else {
+            JOptionPane.showMessageDialog(null, "Başarısız");
+            return false;
+        }
     }
     
 }

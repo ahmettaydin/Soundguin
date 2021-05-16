@@ -130,6 +130,11 @@ public class AdminGUI extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblUsers.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblUsersMouseClicked(evt);
+            }
+        });
         scrllUsers.setViewportView(tblUsers);
 
         lblLogo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -217,6 +222,11 @@ public class AdminGUI extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblSongs.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblSongsMouseClicked(evt);
+            }
+        });
         scrllSongs.setViewportView(tblSongs);
 
         lblLogoSong.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -304,6 +314,11 @@ public class AdminGUI extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblArtists.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblArtistsMouseClicked(evt);
+            }
+        });
         scrllArtists.setViewportView(tblArtists);
 
         lblLogoArtist.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -391,6 +406,11 @@ public class AdminGUI extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblAlbums.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblAlbumsMouseClicked(evt);
+            }
+        });
         scrllAlbums.setViewportView(tblAlbums);
 
         lblLogoAlbum.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -722,6 +742,22 @@ public class AdminGUI extends javax.swing.JFrame {
         userInsertionGUI = new UserInsertionGUI(this, id, 1);
         userInsertionGUI.setVisible(true);
     }//GEN-LAST:event_btnUpdateUserActionPerformed
+
+    private void tblUsersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblUsersMouseClicked
+        fldID.setText(tblUsers.getValueAt(tblUsers.getSelectedRow(), 0).toString());
+    }//GEN-LAST:event_tblUsersMouseClicked
+
+    private void tblSongsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSongsMouseClicked
+        fldIDSong.setText(tblSongs.getValueAt(tblSongs.getSelectedRow(), 0).toString());
+    }//GEN-LAST:event_tblSongsMouseClicked
+
+    private void tblArtistsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblArtistsMouseClicked
+        fldIDArtist.setText(tblArtists.getValueAt(tblArtists.getSelectedRow(), 0).toString());
+    }//GEN-LAST:event_tblArtistsMouseClicked
+
+    private void tblAlbumsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblAlbumsMouseClicked
+        fldIDAlbum.setText(tblAlbums.getValueAt(tblAlbums.getSelectedRow(), 0).toString());
+    }//GEN-LAST:event_tblAlbumsMouseClicked
 
     /**
      * @param args the command line arguments

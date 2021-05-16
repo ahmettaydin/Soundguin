@@ -1,6 +1,7 @@
 package GUI;
 
 import Database.DbHelper;
+import Objects.User;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -12,7 +13,7 @@ import java.util.logging.Logger;
 public class LoginGUI extends javax.swing.JFrame {
 
     AdminGUI adminGUI = new AdminGUI();
-    UserGUI userGUI = new UserGUI();
+    UserGUI userGUI;
     SignupGUI signupGUI = new SignupGUI();
     
     private DbHelper helper = new DbHelper();
@@ -333,13 +334,23 @@ public class LoginGUI extends javax.swing.JFrame {
         try {
             connection = helper.getConnection();
             statement = connection.createStatement();
-            resultSet = statement.executeQuery("select email, password from users");
+            resultSet = statement.executeQuery("select * from users");
             String email = fldUserEmail.getText();
             String password = String.valueOf(fldUserPassword.getPassword());
             while(resultSet.next()) {
                 if(email.equals(resultSet.getString("email"))
                         && password.equals(resultSet.getString("password"))) {
                     setVisible(false);
+                    User user = new User(
+                        resultSet.getInt("id"), 
+                        resultSet.getString("name"), 
+                        resultSet.getString("sname"), 
+                        resultSet.getString("email"),
+                        resultSet.getString("password"),
+                        resultSet.getInt("subscription"),
+                        resultSet.getString("country")
+                    );
+                    userGUI = new UserGUI(user);
                     userGUI.setVisible(true);
                 } else {
                     lblUserWarning.setText("E-mail veya parola hatalı!");

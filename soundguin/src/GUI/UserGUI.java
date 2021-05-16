@@ -5,17 +5,46 @@
  */
 package GUI;
 
+import Objects.*;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author ahmet
  */
 public class UserGUI extends javax.swing.JFrame {
 
+    static Admin admin = new Admin();
+    User user;
+    
+    private DefaultTableModel songModel = null;
+    private Object[] songData = null;
+    private DefaultTableModel userModel = null;
+    private Object[] userData = null;
+    private DefaultTableModel followModel = null;
+    private Object[] followData = null;
+   
     /**
      * Creates new form UserGUI
      */
-    public UserGUI() {
+    public UserGUI(User user) {
+        this.user = user;
         initComponents();
+        setSongModel();
+        setUserModel();
+        setFollowModel();
+        
+        lblUsername.setText(user.getName()+user.getSname());
+        if(user.getSubscription()==1) {
+            lblSubs.setText("Premium Hesap");
+        } else {
+            lblSubs.setText("Normal Hesap");
+        }
+    }
+    
+    public UserGUI() {
+        
     }
 
     /**
@@ -29,30 +58,566 @@ public class UserGUI extends javax.swing.JFrame {
 
         pnlUser = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
+        pnlSongs = new javax.swing.JPanel();
+        btnSongsAdd = new javax.swing.JButton();
+        fldSongsID = new javax.swing.JTextField();
+        lblSongsID = new javax.swing.JLabel();
+        scrllSongs = new javax.swing.JScrollPane();
+        tblSongs = new javax.swing.JTable();
+        pnlPlay = new javax.swing.JPanel();
+        lblSongsPlayName = new javax.swing.JLabel();
+        lblSongsPlayDrt = new javax.swing.JLabel();
+        btnSongsPlay = new javax.swing.JButton();
         pnlPlaylists = new javax.swing.JPanel();
+        lblPlaylistPop = new javax.swing.JLabel();
+        scrllPlaylistPop = new javax.swing.JScrollPane();
+        tblPlaylistPop = new javax.swing.JTable();
+        lblPlaylistJazz = new javax.swing.JLabel();
+        scrllPlaylistJazz = new javax.swing.JScrollPane();
+        tblPlaylistJazz = new javax.swing.JTable();
+        lblPlaylistClassic = new javax.swing.JLabel();
+        scrllPlaylistClassic = new javax.swing.JScrollPane();
+        tblPlaylistClassic = new javax.swing.JTable();
+        pnlFollowings = new javax.swing.JPanel();
+        scrllFolUsers = new javax.swing.JScrollPane();
+        tblFolUsers = new javax.swing.JTable();
+        scrllFolPop = new javax.swing.JScrollPane();
+        tblFolPop = new javax.swing.JTable();
+        lblFolPop = new javax.swing.JLabel();
+        lblFolPopID = new javax.swing.JLabel();
+        btnFolPopAdd = new javax.swing.JButton();
+        fldFolPopID = new javax.swing.JTextField();
+        btnFolPopAllAdd = new javax.swing.JButton();
+        lblFolJazz = new javax.swing.JLabel();
+        lblFolJazzID = new javax.swing.JLabel();
+        btnFolJazzAdd = new javax.swing.JButton();
+        fldFolJazzID = new javax.swing.JTextField();
+        scrllFolJazz = new javax.swing.JScrollPane();
+        tblFolJazz = new javax.swing.JTable();
+        btnFolJazzAllAdd = new javax.swing.JButton();
+        lblFolClassics = new javax.swing.JLabel();
+        lblFolClasID = new javax.swing.JLabel();
+        fldFolClasID = new javax.swing.JTextField();
+        btnFolClasAdd = new javax.swing.JButton();
+        scrllFolClas = new javax.swing.JScrollPane();
+        tblFolClass = new javax.swing.JTable();
+        btnFolClasAllAdd = new javax.swing.JButton();
+        pnlUsers = new javax.swing.JPanel();
+        scrllUsers = new javax.swing.JScrollPane();
+        tblUsers = new javax.swing.JTable();
+        lblUserID = new javax.swing.JLabel();
+        fldUserID = new javax.swing.JTextField();
+        btnUserAdd = new javax.swing.JButton();
+        lblLogo = new javax.swing.JLabel();
+        lblSoundguin = new javax.swing.JLabel();
+        pnlWelcome = new javax.swing.JPanel();
+        lblWelcome = new javax.swing.JLabel();
+        lblUsername = new javax.swing.JLabel();
+        lblSubs = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Soundguin");
-        setLocation(new java.awt.Point(275, 75));
-        setPreferredSize(new java.awt.Dimension(1000, 700));
+        setLocation(new java.awt.Point(275, 25));
         setResizable(false);
 
         pnlUser.setBackground(new java.awt.Color(204, 0, 204));
 
+        pnlSongs.setBackground(new java.awt.Color(153, 0, 153));
+
+        btnSongsAdd.setText("Listeme Ekle");
+
+        fldSongsID.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        lblSongsID.setFont(new java.awt.Font("Verdana", 1, 10)); // NOI18N
+        lblSongsID.setForeground(new java.awt.Color(255, 255, 255));
+        lblSongsID.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblSongsID.setText("ID:");
+
+        tblSongs.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tblSongs.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblSongsMouseClicked(evt);
+            }
+        });
+        scrllSongs.setViewportView(tblSongs);
+
+        pnlPlay.setBackground(new java.awt.Color(102, 0, 102));
+
+        lblSongsPlayName.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        lblSongsPlayName.setForeground(new java.awt.Color(255, 255, 255));
+        lblSongsPlayName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblSongsPlayName.setText("...");
+
+        lblSongsPlayDrt.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        lblSongsPlayDrt.setForeground(new java.awt.Color(255, 255, 255));
+        lblSongsPlayDrt.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblSongsPlayDrt.setText("...");
+
+        btnSongsPlay.setBackground(new java.awt.Color(102, 0, 102));
+        btnSongsPlay.setText("Çal");
+
+        javax.swing.GroupLayout pnlPlayLayout = new javax.swing.GroupLayout(pnlPlay);
+        pnlPlay.setLayout(pnlPlayLayout);
+        pnlPlayLayout.setHorizontalGroup(
+            pnlPlayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlPlayLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblSongsPlayName, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnSongsPlay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblSongsPlayDrt, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        pnlPlayLayout.setVerticalGroup(
+            pnlPlayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlPlayLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlPlayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblSongsPlayName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblSongsPlayDrt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnSongsPlay, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout pnlSongsLayout = new javax.swing.GroupLayout(pnlSongs);
+        pnlSongs.setLayout(pnlSongsLayout);
+        pnlSongsLayout.setHorizontalGroup(
+            pnlSongsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlSongsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlSongsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(scrllSongs, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlSongsLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(lblSongsID, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(fldSongsID, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnSongsAdd)))
+                .addContainerGap())
+            .addComponent(pnlPlay, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        pnlSongsLayout.setVerticalGroup(
+            pnlSongsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlSongsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlSongsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSongsAdd)
+                    .addComponent(fldSongsID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblSongsID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(scrllSongs, javax.swing.GroupLayout.PREFERRED_SIZE, 485, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pnlPlay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab("Şarkılar", pnlSongs);
+
         pnlPlaylists.setBackground(new java.awt.Color(153, 0, 153));
+
+        lblPlaylistPop.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        lblPlaylistPop.setForeground(new java.awt.Color(255, 255, 255));
+        lblPlaylistPop.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblPlaylistPop.setText("Pop");
+
+        tblPlaylistPop.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        scrllPlaylistPop.setViewportView(tblPlaylistPop);
+
+        lblPlaylistJazz.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        lblPlaylistJazz.setForeground(new java.awt.Color(255, 255, 255));
+        lblPlaylistJazz.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblPlaylistJazz.setText("Jazz");
+
+        tblPlaylistJazz.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        scrllPlaylistJazz.setViewportView(tblPlaylistJazz);
+
+        lblPlaylistClassic.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        lblPlaylistClassic.setForeground(new java.awt.Color(255, 255, 255));
+        lblPlaylistClassic.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblPlaylistClassic.setText("Klasik");
+
+        tblPlaylistClassic.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        scrllPlaylistClassic.setViewportView(tblPlaylistClassic);
 
         javax.swing.GroupLayout pnlPlaylistsLayout = new javax.swing.GroupLayout(pnlPlaylists);
         pnlPlaylists.setLayout(pnlPlaylistsLayout);
         pnlPlaylistsLayout.setHorizontalGroup(
             pnlPlaylistsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 975, Short.MAX_VALUE)
+            .addGroup(pnlPlaylistsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlPlaylistsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblPlaylistPop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(scrllPlaylistPop, javax.swing.GroupLayout.DEFAULT_SIZE, 725, Short.MAX_VALUE)
+                    .addComponent(lblPlaylistJazz, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(scrllPlaylistJazz)
+                    .addComponent(lblPlaylistClassic, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(scrllPlaylistClassic))
+                .addContainerGap())
         );
         pnlPlaylistsLayout.setVerticalGroup(
             pnlPlaylistsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 653, Short.MAX_VALUE)
+            .addGroup(pnlPlaylistsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblPlaylistPop)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(scrllPlaylistPop, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lblPlaylistJazz)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(scrllPlaylistJazz, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lblPlaylistClassic)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(scrllPlaylistClassic, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Çalma Listelerim", pnlPlaylists);
+
+        pnlFollowings.setBackground(new java.awt.Color(153, 0, 153));
+
+        tblFolUsers.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        scrllFolUsers.setViewportView(tblFolUsers);
+
+        tblFolPop.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        scrllFolPop.setViewportView(tblFolPop);
+
+        lblFolPop.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        lblFolPop.setForeground(new java.awt.Color(255, 255, 255));
+        lblFolPop.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblFolPop.setText("Pop");
+
+        lblFolPopID.setFont(new java.awt.Font("Verdana", 1, 10)); // NOI18N
+        lblFolPopID.setForeground(new java.awt.Color(255, 255, 255));
+        lblFolPopID.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblFolPopID.setText("ID:");
+
+        btnFolPopAdd.setText("Listeme Ekle");
+
+        fldFolPopID.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        btnFolPopAllAdd.setText("Hepsini Listeme Ekle");
+
+        lblFolJazz.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        lblFolJazz.setForeground(new java.awt.Color(255, 255, 255));
+        lblFolJazz.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblFolJazz.setText("Jazz");
+
+        lblFolJazzID.setFont(new java.awt.Font("Verdana", 1, 10)); // NOI18N
+        lblFolJazzID.setForeground(new java.awt.Color(255, 255, 255));
+        lblFolJazzID.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblFolJazzID.setText("ID:");
+
+        btnFolJazzAdd.setText("Listeme Ekle");
+
+        fldFolJazzID.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        tblFolJazz.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        scrllFolJazz.setViewportView(tblFolJazz);
+
+        btnFolJazzAllAdd.setText("Hepsini Listeme Ekle");
+
+        lblFolClassics.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        lblFolClassics.setForeground(new java.awt.Color(255, 255, 255));
+        lblFolClassics.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblFolClassics.setText("Klasik");
+
+        lblFolClasID.setFont(new java.awt.Font("Verdana", 1, 10)); // NOI18N
+        lblFolClasID.setForeground(new java.awt.Color(255, 255, 255));
+        lblFolClasID.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblFolClasID.setText("ID:");
+
+        fldFolClasID.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        btnFolClasAdd.setText("Listeme Ekle");
+
+        tblFolClass.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        scrllFolClas.setViewportView(tblFolClass);
+
+        btnFolClasAllAdd.setText("Hepsini Listeme Ekle");
+
+        javax.swing.GroupLayout pnlFollowingsLayout = new javax.swing.GroupLayout(pnlFollowings);
+        pnlFollowings.setLayout(pnlFollowingsLayout);
+        pnlFollowingsLayout.setHorizontalGroup(
+            pnlFollowingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlFollowingsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(scrllFolUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 391, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(pnlFollowingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlFollowingsLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(pnlFollowingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlFollowingsLayout.createSequentialGroup()
+                                .addComponent(lblFolPopID, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(fldFolPopID, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnFolPopAdd))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlFollowingsLayout.createSequentialGroup()
+                                .addComponent(lblFolJazzID, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(7, 7, 7)
+                                .addComponent(fldFolJazzID, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnFolJazzAdd))))
+                    .addGroup(pnlFollowingsLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(pnlFollowingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(scrllFolPop, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(lblFolPop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnFolPopAllAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblFolJazz, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(scrllFolJazz, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(btnFolJazzAllAdd, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblFolClassics, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlFollowingsLayout.createSequentialGroup()
+                                .addComponent(lblFolClasID, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(fldFolClasID, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnFolClasAdd))
+                            .addComponent(scrllFolClas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(btnFolClasAllAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap())
+        );
+        pnlFollowingsLayout.setVerticalGroup(
+            pnlFollowingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlFollowingsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlFollowingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(scrllFolUsers)
+                    .addGroup(pnlFollowingsLayout.createSequentialGroup()
+                        .addComponent(lblFolPop)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(pnlFollowingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnFolPopAdd)
+                            .addComponent(lblFolPopID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(fldFolPopID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(scrllFolPop, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnFolPopAllAdd)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblFolJazz)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(pnlFollowingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnFolJazzAdd)
+                            .addComponent(lblFolJazzID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(fldFolJazzID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(scrllFolJazz, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnFolJazzAllAdd)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblFolClassics)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(pnlFollowingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(fldFolClasID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnFolClasAdd)
+                            .addComponent(lblFolClasID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(scrllFolClas, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnFolClasAllAdd)))
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab("Takip Ettiklerim", pnlFollowings);
+
+        pnlUsers.setBackground(new java.awt.Color(153, 0, 153));
+
+        tblUsers.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tblUsers.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblUsersMouseClicked(evt);
+            }
+        });
+        scrllUsers.setViewportView(tblUsers);
+
+        lblUserID.setFont(new java.awt.Font("Verdana", 1, 10)); // NOI18N
+        lblUserID.setForeground(new java.awt.Color(255, 255, 255));
+        lblUserID.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblUserID.setText("ID:");
+
+        fldUserID.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        btnUserAdd.setText("Takip Et");
+        btnUserAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUserAddActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlUsersLayout = new javax.swing.GroupLayout(pnlUsers);
+        pnlUsers.setLayout(pnlUsersLayout);
+        pnlUsersLayout.setHorizontalGroup(
+            pnlUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlUsersLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(scrllUsers, javax.swing.GroupLayout.DEFAULT_SIZE, 725, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlUsersLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(lblUserID, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(fldUserID, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnUserAdd)))
+                .addContainerGap())
+        );
+        pnlUsersLayout.setVerticalGroup(
+            pnlUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlUsersLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnUserAdd)
+                    .addComponent(fldUserID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblUserID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(scrllUsers, javax.swing.GroupLayout.DEFAULT_SIZE, 558, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab("Diğer Kullanıcılar", pnlUsers);
+
+        lblLogo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logoSmall.png"))); // NOI18N
+
+        lblSoundguin.setFont(new java.awt.Font("OCR A Extended", 1, 48)); // NOI18N
+        lblSoundguin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblSoundguin.setText("SOUNDGUIN");
+
+        pnlWelcome.setBackground(new java.awt.Color(102, 0, 102));
+
+        lblWelcome.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
+        lblWelcome.setForeground(new java.awt.Color(255, 255, 255));
+        lblWelcome.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblWelcome.setText("Hoşgeldiniz!");
+
+        lblUsername.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        lblUsername.setForeground(new java.awt.Color(255, 255, 255));
+        lblUsername.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblUsername.setText(".");
+
+        lblSubs.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        lblSubs.setForeground(new java.awt.Color(255, 255, 255));
+        lblSubs.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblSubs.setText(".");
+
+        javax.swing.GroupLayout pnlWelcomeLayout = new javax.swing.GroupLayout(pnlWelcome);
+        pnlWelcome.setLayout(pnlWelcomeLayout);
+        pnlWelcomeLayout.setHorizontalGroup(
+            pnlWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlWelcomeLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblWelcome, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
+                    .addComponent(lblUsername, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblSubs, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        pnlWelcomeLayout.setVerticalGroup(
+            pnlWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlWelcomeLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblWelcome)
+                .addGap(18, 18, 18)
+                .addComponent(lblUsername)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblSubs)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout pnlUserLayout = new javax.swing.GroupLayout(pnlUser);
         pnlUser.setLayout(pnlUserLayout);
@@ -60,15 +625,26 @@ public class UserGUI extends javax.swing.JFrame {
             pnlUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlUserLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1)
-                .addContainerGap())
+                .addGroup(pnlUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(pnlUserLayout.createSequentialGroup()
+                        .addComponent(lblLogo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblSoundguin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 750, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pnlWelcome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlUserLayout.setVerticalGroup(
             pnlUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlUserLayout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(pnlUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblLogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblSoundguin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTabbedPane1)
                 .addContainerGap())
+            .addComponent(pnlWelcome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -85,6 +661,31 @@ public class UserGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnUserAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserAddActionPerformed
+        int id = Integer.parseInt(fldUserID.getText());
+        if(admin.getUser(id).getSubscription() == 1 && id != this.user.getId()) {
+            boolean control = admin.insertFollow(this.user.getId(), id);
+            updateFollowTable();
+            if(control) {
+                fldUserID.setText(null);
+            }
+        } else if(id == this.user.getId()) {
+            JOptionPane.showMessageDialog(null, "Kendini talip edemezsin!");
+        } else {
+            JOptionPane.showMessageDialog(null, "Normal Hesap türüne sahip kullanıcılar takip edilemez!");
+        }
+    }//GEN-LAST:event_btnUserAddActionPerformed
+
+    private void tblUsersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblUsersMouseClicked
+        fldUserID.setText(tblUsers.getValueAt(tblUsers.getSelectedRow(), 0).toString());
+    }//GEN-LAST:event_tblUsersMouseClicked
+
+    private void tblSongsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSongsMouseClicked
+        fldSongsID.setText(tblSongs.getValueAt(tblSongs.getSelectedRow(), 0).toString());
+        lblSongsPlayName.setText(tblSongs.getValueAt(tblSongs.getSelectedRow(), 1).toString());
+        lblSongsPlayDrt.setText(tblSongs.getValueAt(tblSongs.getSelectedRow(), 6).toString());
+    }//GEN-LAST:event_tblSongsMouseClicked
+    
     /**
      * @param args the command line arguments
      */
@@ -119,10 +720,176 @@ public class UserGUI extends javax.swing.JFrame {
             }
         });
     }
+    
+    private void setSongModel() {
+        songModel = new DefaultTableModel();
+        Object[] colSong = new Object[8];
+        colSong[0] = "ID";
+        colSong[1] = "Ad";
+        colSong[2] = "Tarih";
+        colSong[3] = "Sanatçı";
+        colSong[4] = "Albüm";
+        colSong[5] = "Tür";
+        colSong[6] = "Süre";
+        colSong[7] = "Dinleme";
+        
+        songModel.setColumnIdentifiers(colSong);
+        songData = new Object[8];
+        for(int i=0; i<admin.getSongList().size(); i++) {
+            Artist artist = admin.getArtist(admin.getSongList().get(i).getArtistID());
+            Album album = admin.getAlbum(admin.getSongList().get(i).getAlbumID());
+            SongGenre genre = admin.getGenre(admin.getSongList().get(i).getGenreID());
+            songData[0] = admin.getSongList().get(i).getId();
+            songData[1] = admin.getSongList().get(i).getName();
+            songData[2] = admin.getSongList().get(i).getDate();
+            songData[3] = artist.getName()+artist.getSname();
+            songData[4] = album.getName();
+            songData[5] = genre.getName();
+            songData[6] = admin.getSongList().get(i).getDuration();
+            songData[7] = admin.getSongList().get(i).getPlays();
+
+            songModel.addRow(songData);
+        }
+            
+        tblSongs.setModel(songModel);
+    }
+    
+    private void setUserModel() {
+        userModel = new DefaultTableModel();
+        Object[] colUser = new Object[5];
+        colUser[0] = "ID";
+        colUser[1] = "Ad";
+        colUser[2] = "Soyad";
+        colUser[3] = "Abonelik";
+        colUser[4] = "Ülke";
+        
+        userModel.setColumnIdentifiers(colUser);
+        userData = new Object[5];
+        for(int i=0; i<admin.getUserList().size(); i++) {
+            SubsType subsType = admin.getSubsType(admin.getUserList().get(i).getSubscription());
+            userData[0] = admin.getUserList().get(i).getId();
+            userData[1] = admin.getUserList().get(i).getName();
+            userData[2] = admin.getUserList().get(i).getSname();   
+            userData[3] = subsType.getName();              
+            userData[4] = admin.getUserList().get(i).getCountry();
+            userModel.addRow(userData);
+        }
+            
+        tblUsers.setModel(userModel);
+    }
+    
+    private void updateUserTable() {
+        DefaultTableModel clearModel = (DefaultTableModel)tblUsers.getModel();
+        clearModel.setRowCount(0);
+        
+        for(int i=0; i<admin.getUserList().size(); i++) {
+            SubsType subsType = admin.getSubsType(admin.getUserList().get(i).getSubscription());
+            userData[0] = admin.getUserList().get(i).getId();
+            userData[1] = admin.getUserList().get(i).getName();
+            userData[2] = admin.getUserList().get(i).getSname();
+            userData[3] = subsType.getName();
+            userData[4] = admin.getUserList().get(i).getCountry();
+            userModel.addRow(userData);
+        }
+    }
+    
+    private void setFollowModel() {
+        followModel = new DefaultTableModel();
+        Object[] colFollow = new Object[5];
+        colFollow[0] = "ID";
+        colFollow[1] = "Ad";
+        colFollow[2] = "Soyad";
+        colFollow[3] = "Abonelik";
+        colFollow[4] = "Ülke";
+        
+        followModel.setColumnIdentifiers(colFollow);
+        followData = new Object[5];
+        for(int i=0; i<admin.getFollowList(this.user.getId()).size(); i++) {
+            SubsType subsType = admin.getSubsType(admin.getUserList().get(i).getSubscription());
+            followData[0] = admin.getFollowList(this.user.getId()).get(i).getId();
+            followData[1] = admin.getFollowList(this.user.getId()).get(i).getName();
+            followData[2] = admin.getFollowList(this.user.getId()).get(i).getSname();   
+            followData[3] = subsType.getName();              
+            followData[4] = admin.getFollowList(this.user.getId()).get(i).getCountry();
+            followModel.addRow(followData);
+        }
+            
+        tblFolUsers.setModel(followModel);
+    }
+    
+    private void updateFollowTable() {
+        DefaultTableModel clearModel = (DefaultTableModel)tblFolUsers.getModel();
+        clearModel.setRowCount(0);
+        
+        for(int i=0; i<admin.getFollowList(this.user.getId()).size(); i++) {
+            SubsType subsType = admin.getSubsType(admin.getUserList().get(i).getSubscription());
+            followData[0] = admin.getFollowList(this.user.getId()).get(i).getId();
+            followData[1] = admin.getFollowList(this.user.getId()).get(i).getName();
+            followData[2] = admin.getFollowList(this.user.getId()).get(i).getSname();   
+            followData[3] = subsType.getName();             
+            followData[4] = admin.getFollowList(this.user.getId()).get(i).getCountry();
+            followModel.addRow(followData);
+        }
+    } 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnFolClasAdd;
+    private javax.swing.JButton btnFolClasAllAdd;
+    private javax.swing.JButton btnFolJazzAdd;
+    private javax.swing.JButton btnFolJazzAllAdd;
+    private javax.swing.JButton btnFolPopAdd;
+    private javax.swing.JButton btnFolPopAllAdd;
+    private javax.swing.JButton btnSongsAdd;
+    private javax.swing.JButton btnSongsPlay;
+    private javax.swing.JButton btnUserAdd;
+    private javax.swing.JTextField fldFolClasID;
+    private javax.swing.JTextField fldFolJazzID;
+    private javax.swing.JTextField fldFolPopID;
+    private javax.swing.JTextField fldSongsID;
+    private javax.swing.JTextField fldUserID;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JLabel lblFolClasID;
+    private javax.swing.JLabel lblFolClassics;
+    private javax.swing.JLabel lblFolJazz;
+    private javax.swing.JLabel lblFolJazzID;
+    private javax.swing.JLabel lblFolPop;
+    private javax.swing.JLabel lblFolPopID;
+    private javax.swing.JLabel lblLogo;
+    private javax.swing.JLabel lblPlaylistClassic;
+    private javax.swing.JLabel lblPlaylistJazz;
+    private javax.swing.JLabel lblPlaylistPop;
+    private javax.swing.JLabel lblSongsID;
+    private javax.swing.JLabel lblSongsPlayDrt;
+    private javax.swing.JLabel lblSongsPlayName;
+    private javax.swing.JLabel lblSoundguin;
+    private javax.swing.JLabel lblSubs;
+    private javax.swing.JLabel lblUserID;
+    private javax.swing.JLabel lblUsername;
+    private javax.swing.JLabel lblWelcome;
+    private javax.swing.JPanel pnlFollowings;
+    private javax.swing.JPanel pnlPlay;
     private javax.swing.JPanel pnlPlaylists;
+    private javax.swing.JPanel pnlSongs;
     private javax.swing.JPanel pnlUser;
+    private javax.swing.JPanel pnlUsers;
+    private javax.swing.JPanel pnlWelcome;
+    private javax.swing.JScrollPane scrllFolClas;
+    private javax.swing.JScrollPane scrllFolJazz;
+    private javax.swing.JScrollPane scrllFolPop;
+    private javax.swing.JScrollPane scrllFolUsers;
+    private javax.swing.JScrollPane scrllPlaylistClassic;
+    private javax.swing.JScrollPane scrllPlaylistJazz;
+    private javax.swing.JScrollPane scrllPlaylistPop;
+    private javax.swing.JScrollPane scrllSongs;
+    private javax.swing.JScrollPane scrllUsers;
+    private javax.swing.JTable tblFolClass;
+    private javax.swing.JTable tblFolJazz;
+    private javax.swing.JTable tblFolPop;
+    private javax.swing.JTable tblFolUsers;
+    private javax.swing.JTable tblPlaylistClassic;
+    private javax.swing.JTable tblPlaylistJazz;
+    private javax.swing.JTable tblPlaylistPop;
+    private javax.swing.JTable tblSongs;
+    private javax.swing.JTable tblUsers;
     // End of variables declaration//GEN-END:variables
 }
