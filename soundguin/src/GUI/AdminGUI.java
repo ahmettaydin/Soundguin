@@ -27,6 +27,14 @@ public class AdminGUI extends javax.swing.JFrame {
     private Object[] subsData = null;
     private DefaultTableModel genreModel = null;
     private Object[] genreData = null;
+    private DefaultTableModel popModel = null;
+    private Object[] popData = null;
+    private DefaultTableModel jazzModel = null;
+    private Object[] jazzData = null;
+    private DefaultTableModel classicModel = null;
+    private Object[] classicData = null;
+    private DefaultTableModel followModel = null;
+    private Object[] followData = null;
     UserInsertionGUI userInsertionGUI;
     ArtistInsertionGUI artistInsertionGUI;
     SongInsertionGUI songInsertionGUI;
@@ -43,6 +51,10 @@ public class AdminGUI extends javax.swing.JFrame {
         setAlbumModel();
         setSubsModel();
         setGenreModel();
+        setPopModel();
+        setJazzModel();
+        setClassicModel();
+        setFollowModel();
     }
 
     /**
@@ -92,14 +104,8 @@ public class AdminGUI extends javax.swing.JFrame {
         btnDeleteAlbum = new javax.swing.JButton();
         lblIDAlbum = new javax.swing.JLabel();
         btnUpdateAlbum = new javax.swing.JButton();
-        pnlOthers = new javax.swing.JPanel();
-        scrllSubs = new javax.swing.JScrollPane();
-        tblSubs = new javax.swing.JTable();
-        lblLogoOthers = new javax.swing.JLabel();
-        lblSubs = new javax.swing.JLabel();
-        lblGenres = new javax.swing.JLabel();
-        scrllGenres = new javax.swing.JScrollPane();
-        tblGenres = new javax.swing.JTable();
+        pnlPlaylists = new javax.swing.JPanel();
+        lblLogoPlaylists = new javax.swing.JLabel();
         lblPops = new javax.swing.JLabel();
         scrllPops = new javax.swing.JScrollPane();
         tblPops = new javax.swing.JTable();
@@ -109,6 +115,17 @@ public class AdminGUI extends javax.swing.JFrame {
         lblClassics = new javax.swing.JLabel();
         scrllClassics = new javax.swing.JScrollPane();
         tblClassics = new javax.swing.JTable();
+        pnlOthers = new javax.swing.JPanel();
+        scrllSubs = new javax.swing.JScrollPane();
+        tblSubs = new javax.swing.JTable();
+        lblLogoOthers = new javax.swing.JLabel();
+        lblSubs = new javax.swing.JLabel();
+        lblGenres = new javax.swing.JLabel();
+        scrllGenres = new javax.swing.JScrollPane();
+        tblGenres = new javax.swing.JTable();
+        lblFollow = new javax.swing.JLabel();
+        scrllFollow = new javax.swing.JScrollPane();
+        tblFollow = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Soundguin  Admin");
@@ -203,7 +220,7 @@ public class AdminGUI extends javax.swing.JFrame {
                         .addComponent(lblIDUser, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnUpdateUser)))
                 .addGap(18, 18, 18)
-                .addComponent(scrllUsers, javax.swing.GroupLayout.DEFAULT_SIZE, 592, Short.MAX_VALUE)
+                .addComponent(scrllUsers, javax.swing.GroupLayout.DEFAULT_SIZE, 597, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -295,7 +312,7 @@ public class AdminGUI extends javax.swing.JFrame {
                         .addComponent(lblIDSong, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnUpdateSong)))
                 .addGap(18, 18, 18)
-                .addComponent(scrllSongs, javax.swing.GroupLayout.DEFAULT_SIZE, 592, Short.MAX_VALUE)
+                .addComponent(scrllSongs, javax.swing.GroupLayout.DEFAULT_SIZE, 597, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -387,7 +404,7 @@ public class AdminGUI extends javax.swing.JFrame {
                         .addComponent(fldIDArtist, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(lblIDArtist, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addComponent(scrllArtists, javax.swing.GroupLayout.DEFAULT_SIZE, 592, Short.MAX_VALUE)
+                .addComponent(scrllArtists, javax.swing.GroupLayout.DEFAULT_SIZE, 597, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -479,52 +496,16 @@ public class AdminGUI extends javax.swing.JFrame {
                         .addComponent(lblIDAlbum, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnUpdateAlbum)))
                 .addGap(18, 18, 18)
-                .addComponent(scrllAlbums, javax.swing.GroupLayout.DEFAULT_SIZE, 592, Short.MAX_VALUE)
+                .addComponent(scrllAlbums, javax.swing.GroupLayout.DEFAULT_SIZE, 597, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         jTabbedPane1.addTab("Albümler", pnlAlbums);
 
-        pnlOthers.setBackground(new java.awt.Color(153, 0, 153));
+        pnlPlaylists.setBackground(new java.awt.Color(153, 0, 153));
 
-        tblSubs.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        scrllSubs.setViewportView(tblSubs);
-
-        lblLogoOthers.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblLogoOthers.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logoSmall.png"))); // NOI18N
-
-        lblSubs.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        lblSubs.setForeground(new java.awt.Color(255, 255, 255));
-        lblSubs.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblSubs.setText("Abonelik Türü");
-
-        lblGenres.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        lblGenres.setForeground(new java.awt.Color(255, 255, 255));
-        lblGenres.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblGenres.setText("Şarkı Türü");
-
-        tblGenres.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        scrllGenres.setViewportView(tblGenres);
+        lblLogoPlaylists.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblLogoPlaylists.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logoSmall.png"))); // NOI18N
 
         lblPops.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         lblPops.setForeground(new java.awt.Color(255, 255, 255));
@@ -580,6 +561,105 @@ public class AdminGUI extends javax.swing.JFrame {
         ));
         scrllClassics.setViewportView(tblClassics);
 
+        javax.swing.GroupLayout pnlPlaylistsLayout = new javax.swing.GroupLayout(pnlPlaylists);
+        pnlPlaylists.setLayout(pnlPlaylistsLayout);
+        pnlPlaylistsLayout.setHorizontalGroup(
+            pnlPlaylistsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlPlaylistsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlPlaylistsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblPops, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(scrllPops, javax.swing.GroupLayout.DEFAULT_SIZE, 955, Short.MAX_VALUE)
+                    .addComponent(lblJazzes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(scrllJazzes)
+                    .addComponent(lblClassics, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(pnlPlaylistsLayout.createSequentialGroup()
+                        .addComponent(lblLogoPlaylists)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(scrllClassics))
+                .addContainerGap())
+        );
+        pnlPlaylistsLayout.setVerticalGroup(
+            pnlPlaylistsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlPlaylistsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblLogoPlaylists)
+                .addGap(18, 18, 18)
+                .addComponent(lblPops)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(scrllPops, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lblJazzes)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(scrllJazzes, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lblClassics)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(scrllClassics, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(55, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Çalma Listeleri", pnlPlaylists);
+
+        pnlOthers.setBackground(new java.awt.Color(153, 0, 153));
+
+        tblSubs.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        scrllSubs.setViewportView(tblSubs);
+
+        lblLogoOthers.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblLogoOthers.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logoSmall.png"))); // NOI18N
+
+        lblSubs.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        lblSubs.setForeground(new java.awt.Color(255, 255, 255));
+        lblSubs.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblSubs.setText("Abonelik Türü");
+
+        lblGenres.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        lblGenres.setForeground(new java.awt.Color(255, 255, 255));
+        lblGenres.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblGenres.setText("Şarkı Türü");
+
+        tblGenres.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        scrllGenres.setViewportView(tblGenres);
+
+        lblFollow.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        lblFollow.setForeground(new java.awt.Color(255, 255, 255));
+        lblFollow.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblFollow.setText("Takip Listesi");
+
+        tblFollow.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        scrllFollow.setViewportView(tblFollow);
+
         javax.swing.GroupLayout pnlOthersLayout = new javax.swing.GroupLayout(pnlOthers);
         pnlOthers.setLayout(pnlOthersLayout);
         pnlOthersLayout.setHorizontalGroup(
@@ -591,15 +671,11 @@ public class AdminGUI extends javax.swing.JFrame {
                     .addComponent(lblSubs, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblGenres, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(scrllGenres)
-                    .addComponent(lblPops, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(scrllPops)
-                    .addComponent(lblJazzes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(scrllJazzes)
-                    .addComponent(lblClassics, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblFollow, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(pnlOthersLayout.createSequentialGroup()
                         .addComponent(lblLogoOthers)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(scrllClassics))
+                    .addComponent(scrllFollow))
                 .addContainerGap())
         );
         pnlOthersLayout.setVerticalGroup(
@@ -616,18 +692,10 @@ public class AdminGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(scrllGenres, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(lblPops)
+                .addComponent(lblFollow)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scrllPops, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(lblJazzes)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scrllJazzes, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(lblClassics)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scrllClassics, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addComponent(scrllFollow, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Diğer Tablolar", pnlOthers);
@@ -996,6 +1064,78 @@ public class AdminGUI extends javax.swing.JFrame {
             albumModel.addRow(albumData);
         }
     }
+    
+    private void setPopModel() {
+        popModel = new DefaultTableModel();
+        Object[] colPop = new Object[2];
+        colPop[0] = "Kullanıcı";
+        colPop[1] = "Şarkı";
+        
+        popModel.setColumnIdentifiers(colPop);
+        popData = new Object[2];
+        for(int i=0; i<admin.getAdminPopList().size(); i++) {
+            popData[0] = admin.getAdminPopList().get(i).getUserID();
+            popData[1] = admin.getAdminPopList().get(i).getSongID();
+            
+            songModel.addRow(songData);
+        }
+            
+        tblPops.setModel(popModel);
+    }
+    
+    private void setJazzModel() {
+        jazzModel = new DefaultTableModel();
+        Object[] colJazz = new Object[2];
+        colJazz[0] = "Kullanıcı";
+        colJazz[1] = "Şarkı";
+        
+        jazzModel.setColumnIdentifiers(colJazz);
+        jazzData = new Object[2];
+        for(int i=0; i<admin.getAdminJazzList().size(); i++) {
+            jazzData[0] = admin.getAdminJazzList().get(i).getUserID();
+            jazzData[1] = admin.getAdminJazzList().get(i).getSongID();
+            
+            jazzModel.addRow(jazzData);
+        }
+            
+        tblJazzes.setModel(jazzModel);
+    }
+    
+    private void setClassicModel() {
+        classicModel = new DefaultTableModel();
+        Object[] colClassic = new Object[2];
+        colClassic[0] = "Kullanıcı";
+        colClassic[1] = "Şarkı";
+        
+        classicModel.setColumnIdentifiers(colClassic);
+        classicData = new Object[2];
+        for(int i=0; i<admin.getAdminClassicList().size(); i++) {
+            classicData[0] = admin.getAdminClassicList().get(i).getUserID();
+            classicData[1] = admin.getAdminClassicList().get(i).getSongID();
+            
+            classicModel.addRow(classicData);
+        }
+            
+        tblClassics.setModel(classicModel);
+    }
+    
+    private void setFollowModel() {
+        followModel = new DefaultTableModel();
+        Object[] colFollow = new Object[2];
+        colFollow[0] = "Takip Eden";
+        colFollow[1] = "Takip Edilen";
+        
+        followModel.setColumnIdentifiers(colFollow);
+        followData = new Object[2];
+        for(int i=0; i<admin.getAdminFollowList().size(); i++) {
+            followData[0] = admin.getAdminFollowList().get(i).getUserID1();
+            followData[1] = admin.getAdminFollowList().get(i).getUserID2();
+            
+            followModel.addRow(followData);
+        }
+            
+        tblFollow.setModel(followModel);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDeleteAlbum;
@@ -1016,6 +1156,7 @@ public class AdminGUI extends javax.swing.JFrame {
     private javax.swing.JTextField fldIDSong;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel lblClassics;
+    private javax.swing.JLabel lblFollow;
     private javax.swing.JLabel lblGenres;
     private javax.swing.JLabel lblIDAlbum;
     private javax.swing.JLabel lblIDArtist;
@@ -1026,6 +1167,7 @@ public class AdminGUI extends javax.swing.JFrame {
     private javax.swing.JLabel lblLogoAlbum;
     private javax.swing.JLabel lblLogoArtist;
     private javax.swing.JLabel lblLogoOthers;
+    private javax.swing.JLabel lblLogoPlaylists;
     private javax.swing.JLabel lblLogoSong;
     private javax.swing.JLabel lblPops;
     private javax.swing.JLabel lblSubs;
@@ -1033,11 +1175,13 @@ public class AdminGUI extends javax.swing.JFrame {
     private javax.swing.JPanel pnlAlbums;
     private javax.swing.JPanel pnlArtists;
     private javax.swing.JPanel pnlOthers;
+    private javax.swing.JPanel pnlPlaylists;
     private javax.swing.JPanel pnlSongs;
     private javax.swing.JPanel pnlUsers;
     private javax.swing.JScrollPane scrllAlbums;
     private javax.swing.JScrollPane scrllArtists;
     private javax.swing.JScrollPane scrllClassics;
+    private javax.swing.JScrollPane scrllFollow;
     private javax.swing.JScrollPane scrllGenres;
     private javax.swing.JScrollPane scrllJazzes;
     private javax.swing.JScrollPane scrllPops;
@@ -1047,6 +1191,7 @@ public class AdminGUI extends javax.swing.JFrame {
     private javax.swing.JTable tblAlbums;
     private javax.swing.JTable tblArtists;
     private javax.swing.JTable tblClassics;
+    private javax.swing.JTable tblFollow;
     private javax.swing.JTable tblGenres;
     private javax.swing.JTable tblJazzes;
     private javax.swing.JTable tblPops;

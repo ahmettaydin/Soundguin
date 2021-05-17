@@ -24,7 +24,21 @@ public class UserGUI extends javax.swing.JFrame {
     private Object[] userData = null;
     private DefaultTableModel followModel = null;
     private Object[] followData = null;
-   
+    private DefaultTableModel popModel = null;
+    private Object[] popData = null;
+    private DefaultTableModel jazzModel = null;
+    private Object[] jazzData = null;
+    private DefaultTableModel classicModel = null;
+    private Object[] classicData = null;
+    private DefaultTableModel folPopModel = null;
+    private Object[] folPopData = null;
+    private DefaultTableModel folJazzModel = null;
+    private Object[] folJazzData = null;
+    private DefaultTableModel folClassicModel = null;
+    private Object[] folClassicData = null;
+    private DefaultTableModel top10Model = null;
+    private Object[] top10Data = null;
+    
     /**
      * Creates new form UserGUI
      */
@@ -34,6 +48,13 @@ public class UserGUI extends javax.swing.JFrame {
         setSongModel();
         setUserModel();
         setFollowModel();
+        setPopModel();
+        setJazzModel();
+        setClassicModel();
+        setFolPopModel();
+        setFolJazzModel();
+        setFolClassicModel();
+        setTop10Model();
         
         lblUsername.setText(user.getName()+user.getSname());
         if(user.getSubscription()==1) {
@@ -64,7 +85,7 @@ public class UserGUI extends javax.swing.JFrame {
         lblSongsID = new javax.swing.JLabel();
         scrllSongs = new javax.swing.JScrollPane();
         tblSongs = new javax.swing.JTable();
-        pnlPlay = new javax.swing.JPanel();
+        pnlSongsPlay = new javax.swing.JPanel();
         lblSongsPlayName = new javax.swing.JLabel();
         lblSongsPlayDrt = new javax.swing.JLabel();
         btnSongsPlay = new javax.swing.JButton();
@@ -78,6 +99,15 @@ public class UserGUI extends javax.swing.JFrame {
         lblPlaylistClassic = new javax.swing.JLabel();
         scrllPlaylistClassic = new javax.swing.JScrollPane();
         tblPlaylistClassic = new javax.swing.JTable();
+        btnPlaylistPop = new javax.swing.JButton();
+        fldPlaylistPopID = new javax.swing.JTextField();
+        lblPlaylistPopID = new javax.swing.JLabel();
+        btnPlaylistJazz = new javax.swing.JButton();
+        fldPlaylistJazzID = new javax.swing.JTextField();
+        lblPlaylistJazzID = new javax.swing.JLabel();
+        btnPlaylistClassic = new javax.swing.JButton();
+        fldPlaylistClassicID = new javax.swing.JTextField();
+        lblPlaylistClassicID = new javax.swing.JLabel();
         pnlFollowings = new javax.swing.JPanel();
         scrllFolUsers = new javax.swing.JScrollPane();
         tblFolUsers = new javax.swing.JTable();
@@ -108,6 +138,13 @@ public class UserGUI extends javax.swing.JFrame {
         lblUserID = new javax.swing.JLabel();
         fldUserID = new javax.swing.JTextField();
         btnUserAdd = new javax.swing.JButton();
+        pnlTop10 = new javax.swing.JPanel();
+        btnTop10 = new javax.swing.JButton();
+        fldTop10ID = new javax.swing.JTextField();
+        lblTop10ID = new javax.swing.JLabel();
+        scrllTop10 = new javax.swing.JScrollPane();
+        tblTop10 = new javax.swing.JTable();
+        lblTop10Country = new javax.swing.JLabel();
         lblLogo = new javax.swing.JLabel();
         lblSoundguin = new javax.swing.JLabel();
         pnlWelcome = new javax.swing.JPanel();
@@ -125,6 +162,11 @@ public class UserGUI extends javax.swing.JFrame {
         pnlSongs.setBackground(new java.awt.Color(153, 0, 153));
 
         btnSongsAdd.setText("Listeme Ekle");
+        btnSongsAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSongsAddActionPerformed(evt);
+            }
+        });
 
         fldSongsID.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
@@ -151,7 +193,7 @@ public class UserGUI extends javax.swing.JFrame {
         });
         scrllSongs.setViewportView(tblSongs);
 
-        pnlPlay.setBackground(new java.awt.Color(102, 0, 102));
+        pnlSongsPlay.setBackground(new java.awt.Color(102, 0, 102));
 
         lblSongsPlayName.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         lblSongsPlayName.setForeground(new java.awt.Color(255, 255, 255));
@@ -163,30 +205,30 @@ public class UserGUI extends javax.swing.JFrame {
         lblSongsPlayDrt.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblSongsPlayDrt.setText("...");
 
-        btnSongsPlay.setBackground(new java.awt.Color(102, 0, 102));
         btnSongsPlay.setText("Çal");
 
-        javax.swing.GroupLayout pnlPlayLayout = new javax.swing.GroupLayout(pnlPlay);
-        pnlPlay.setLayout(pnlPlayLayout);
-        pnlPlayLayout.setHorizontalGroup(
-            pnlPlayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlPlayLayout.createSequentialGroup()
+        javax.swing.GroupLayout pnlSongsPlayLayout = new javax.swing.GroupLayout(pnlSongsPlay);
+        pnlSongsPlay.setLayout(pnlSongsPlayLayout);
+        pnlSongsPlayLayout.setHorizontalGroup(
+            pnlSongsPlayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlSongsPlayLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblSongsPlayName, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnSongsPlay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblSongsPlayDrt, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblSongsPlayName, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnSongsPlay, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(lblSongsPlayDrt, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
-        pnlPlayLayout.setVerticalGroup(
-            pnlPlayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlPlayLayout.createSequentialGroup()
+        pnlSongsPlayLayout.setVerticalGroup(
+            pnlSongsPlayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlSongsPlayLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnlPlayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblSongsPlayName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblSongsPlayDrt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnSongsPlay, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE))
+                .addGroup(pnlSongsPlayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblSongsPlayName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlSongsPlayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblSongsPlayDrt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnSongsPlay, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -197,16 +239,16 @@ public class UserGUI extends javax.swing.JFrame {
             .addGroup(pnlSongsLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlSongsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(scrllSongs, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlSongsLayout.createSequentialGroup()
+                    .addComponent(pnlSongsPlay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(pnlSongsLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(lblSongsID, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(fldSongsID, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnSongsAdd)))
+                        .addComponent(btnSongsAdd))
+                    .addComponent(scrllSongs))
                 .addContainerGap())
-            .addComponent(pnlPlay, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         pnlSongsLayout.setVerticalGroup(
             pnlSongsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -217,10 +259,9 @@ public class UserGUI extends javax.swing.JFrame {
                     .addComponent(fldSongsID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblSongsID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scrllSongs, javax.swing.GroupLayout.PREFERRED_SIZE, 485, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(scrllSongs, javax.swing.GroupLayout.PREFERRED_SIZE, 502, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlPlay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(pnlSongsPlay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jTabbedPane1.addTab("Şarkılar", pnlSongs);
@@ -243,6 +284,11 @@ public class UserGUI extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblPlaylistPop.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblPlaylistPopMouseClicked(evt);
+            }
+        });
         scrllPlaylistPop.setViewportView(tblPlaylistPop);
 
         lblPlaylistJazz.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
@@ -261,6 +307,11 @@ public class UserGUI extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblPlaylistJazz.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblPlaylistJazzMouseClicked(evt);
+            }
+        });
         scrllPlaylistJazz.setViewportView(tblPlaylistJazz);
 
         lblPlaylistClassic.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
@@ -279,7 +330,54 @@ public class UserGUI extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblPlaylistClassic.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblPlaylistClassicMouseClicked(evt);
+            }
+        });
         scrllPlaylistClassic.setViewportView(tblPlaylistClassic);
+
+        btnPlaylistPop.setText("Kaldır");
+        btnPlaylistPop.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPlaylistPopActionPerformed(evt);
+            }
+        });
+
+        fldPlaylistPopID.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        lblPlaylistPopID.setFont(new java.awt.Font("Verdana", 1, 10)); // NOI18N
+        lblPlaylistPopID.setForeground(new java.awt.Color(255, 255, 255));
+        lblPlaylistPopID.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblPlaylistPopID.setText("ID:");
+
+        btnPlaylistJazz.setText("Kaldır");
+        btnPlaylistJazz.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPlaylistJazzActionPerformed(evt);
+            }
+        });
+
+        fldPlaylistJazzID.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        lblPlaylistJazzID.setFont(new java.awt.Font("Verdana", 1, 10)); // NOI18N
+        lblPlaylistJazzID.setForeground(new java.awt.Color(255, 255, 255));
+        lblPlaylistJazzID.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblPlaylistJazzID.setText("ID:");
+
+        btnPlaylistClassic.setText("Kaldır");
+        btnPlaylistClassic.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPlaylistClassicActionPerformed(evt);
+            }
+        });
+
+        fldPlaylistClassicID.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        lblPlaylistClassicID.setFont(new java.awt.Font("Verdana", 1, 10)); // NOI18N
+        lblPlaylistClassicID.setForeground(new java.awt.Color(255, 255, 255));
+        lblPlaylistClassicID.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblPlaylistClassicID.setText("ID:");
 
         javax.swing.GroupLayout pnlPlaylistsLayout = new javax.swing.GroupLayout(pnlPlaylists);
         pnlPlaylists.setLayout(pnlPlaylistsLayout);
@@ -288,30 +386,63 @@ public class UserGUI extends javax.swing.JFrame {
             .addGroup(pnlPlaylistsLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlPlaylistsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblPlaylistPop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(scrllPlaylistPop, javax.swing.GroupLayout.DEFAULT_SIZE, 725, Short.MAX_VALUE)
-                    .addComponent(lblPlaylistJazz, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(scrllPlaylistJazz)
-                    .addComponent(lblPlaylistClassic, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(scrllPlaylistClassic))
+                    .addComponent(scrllPlaylistClassic)
+                    .addGroup(pnlPlaylistsLayout.createSequentialGroup()
+                        .addComponent(lblPlaylistPop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblPlaylistPopID, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(fldPlaylistPopID, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnPlaylistPop))
+                    .addGroup(pnlPlaylistsLayout.createSequentialGroup()
+                        .addComponent(lblPlaylistJazz, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblPlaylistJazzID, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(fldPlaylistJazzID, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnPlaylistJazz))
+                    .addGroup(pnlPlaylistsLayout.createSequentialGroup()
+                        .addComponent(lblPlaylistClassic, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblPlaylistClassicID, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(fldPlaylistClassicID, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnPlaylistClassic)))
                 .addContainerGap())
         );
         pnlPlaylistsLayout.setVerticalGroup(
             pnlPlaylistsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlPlaylistsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblPlaylistPop)
+                .addGroup(pnlPlaylistsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblPlaylistPop)
+                    .addComponent(btnPlaylistPop)
+                    .addComponent(fldPlaylistPopID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblPlaylistPopID))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(scrllPlaylistPop, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(lblPlaylistJazz)
+                .addGroup(pnlPlaylistsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblPlaylistJazz)
+                    .addComponent(btnPlaylistJazz)
+                    .addComponent(fldPlaylistJazzID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblPlaylistJazzID))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(scrllPlaylistJazz, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(lblPlaylistClassic)
+                .addGroup(pnlPlaylistsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblPlaylistClassic)
+                    .addComponent(btnPlaylistClassic)
+                    .addComponent(fldPlaylistClassicID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblPlaylistClassicID))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(scrllPlaylistClassic, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Çalma Listelerim", pnlPlaylists);
@@ -329,6 +460,11 @@ public class UserGUI extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblFolUsers.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblFolUsersMouseClicked(evt);
+            }
+        });
         scrllFolUsers.setViewportView(tblFolUsers);
 
         tblFolPop.setModel(new javax.swing.table.DefaultTableModel(
@@ -342,6 +478,11 @@ public class UserGUI extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblFolPop.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblFolPopMouseClicked(evt);
+            }
+        });
         scrllFolPop.setViewportView(tblFolPop);
 
         lblFolPop.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
@@ -355,10 +496,20 @@ public class UserGUI extends javax.swing.JFrame {
         lblFolPopID.setText("ID:");
 
         btnFolPopAdd.setText("Listeme Ekle");
+        btnFolPopAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFolPopAddActionPerformed(evt);
+            }
+        });
 
         fldFolPopID.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         btnFolPopAllAdd.setText("Hepsini Listeme Ekle");
+        btnFolPopAllAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFolPopAllAddActionPerformed(evt);
+            }
+        });
 
         lblFolJazz.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         lblFolJazz.setForeground(new java.awt.Color(255, 255, 255));
@@ -371,6 +522,11 @@ public class UserGUI extends javax.swing.JFrame {
         lblFolJazzID.setText("ID:");
 
         btnFolJazzAdd.setText("Listeme Ekle");
+        btnFolJazzAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFolJazzAddActionPerformed(evt);
+            }
+        });
 
         fldFolJazzID.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
@@ -385,9 +541,19 @@ public class UserGUI extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblFolJazz.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblFolJazzMouseClicked(evt);
+            }
+        });
         scrllFolJazz.setViewportView(tblFolJazz);
 
         btnFolJazzAllAdd.setText("Hepsini Listeme Ekle");
+        btnFolJazzAllAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFolJazzAllAddActionPerformed(evt);
+            }
+        });
 
         lblFolClassics.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         lblFolClassics.setForeground(new java.awt.Color(255, 255, 255));
@@ -402,6 +568,11 @@ public class UserGUI extends javax.swing.JFrame {
         fldFolClasID.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         btnFolClasAdd.setText("Listeme Ekle");
+        btnFolClasAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFolClasAddActionPerformed(evt);
+            }
+        });
 
         tblFolClass.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -414,9 +585,19 @@ public class UserGUI extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblFolClass.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblFolClassMouseClicked(evt);
+            }
+        });
         scrllFolClas.setViewportView(tblFolClass);
 
         btnFolClasAllAdd.setText("Hepsini Listeme Ekle");
+        btnFolClasAllAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFolClasAllAddActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlFollowingsLayout = new javax.swing.GroupLayout(pnlFollowings);
         pnlFollowings.setLayout(pnlFollowingsLayout);
@@ -569,7 +750,81 @@ public class UserGUI extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Diğer Kullanıcılar", pnlUsers);
+        jTabbedPane1.addTab("Bütün Kullanıcılar", pnlUsers);
+
+        pnlTop10.setBackground(new java.awt.Color(153, 0, 153));
+
+        btnTop10.setText("Listeme Ekle");
+        btnTop10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTop10ActionPerformed(evt);
+            }
+        });
+
+        fldTop10ID.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        lblTop10ID.setFont(new java.awt.Font("Verdana", 1, 10)); // NOI18N
+        lblTop10ID.setForeground(new java.awt.Color(255, 255, 255));
+        lblTop10ID.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTop10ID.setText("ID:");
+
+        tblTop10.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tblTop10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblTop10MouseClicked(evt);
+            }
+        });
+        scrllTop10.setViewportView(tblTop10);
+
+        lblTop10Country.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        lblTop10Country.setForeground(new java.awt.Color(255, 255, 255));
+        lblTop10Country.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTop10Country.setText("...");
+
+        javax.swing.GroupLayout pnlTop10Layout = new javax.swing.GroupLayout(pnlTop10);
+        pnlTop10.setLayout(pnlTop10Layout);
+        pnlTop10Layout.setHorizontalGroup(
+            pnlTop10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlTop10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlTop10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(scrllTop10, javax.swing.GroupLayout.DEFAULT_SIZE, 725, Short.MAX_VALUE)
+                    .addGroup(pnlTop10Layout.createSequentialGroup()
+                        .addComponent(lblTop10Country, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblTop10ID, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(fldTop10ID, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnTop10)))
+                .addContainerGap())
+        );
+        pnlTop10Layout.setVerticalGroup(
+            pnlTop10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlTop10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlTop10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(pnlTop10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnTop10)
+                        .addComponent(fldTop10ID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblTop10ID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblTop10Country, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(scrllTop10, javax.swing.GroupLayout.DEFAULT_SIZE, 558, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab("Top10 Şarkılar", pnlTop10);
 
         lblLogo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logoSmall.png"))); // NOI18N
@@ -685,6 +940,188 @@ public class UserGUI extends javax.swing.JFrame {
         lblSongsPlayName.setText(tblSongs.getValueAt(tblSongs.getSelectedRow(), 1).toString());
         lblSongsPlayDrt.setText(tblSongs.getValueAt(tblSongs.getSelectedRow(), 6).toString());
     }//GEN-LAST:event_tblSongsMouseClicked
+
+    private void tblFolUsersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblFolUsersMouseClicked
+        int id = Integer.parseInt(tblFolUsers.getValueAt(tblFolUsers.getSelectedRow(), 0).toString());
+        updateFolPopModel(id);
+        updateFolJazzModel(id);
+        updateFolClasssicModel(id);
+    }//GEN-LAST:event_tblFolUsersMouseClicked
+
+    private void tblFolPopMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblFolPopMouseClicked
+        fldFolPopID.setText(tblFolPop.getValueAt(tblFolPop.getSelectedRow(), 0).toString());
+    }//GEN-LAST:event_tblFolPopMouseClicked
+
+    private void tblFolJazzMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblFolJazzMouseClicked
+        fldFolJazzID.setText(tblFolJazz.getValueAt(tblFolJazz.getSelectedRow(), 0).toString());
+    }//GEN-LAST:event_tblFolJazzMouseClicked
+
+    private void tblFolClassMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblFolClassMouseClicked
+        fldFolClasID.setText(tblFolClass.getValueAt(tblFolClass.getSelectedRow(), 0).toString());
+    }//GEN-LAST:event_tblFolClassMouseClicked
+
+    private void btnFolClasAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFolClasAddActionPerformed
+        int songId = Integer.parseInt(fldFolClasID.getText());
+        boolean control = admin.insertClassic(this.user.getId(), songId);
+        updateClassicModel();
+        
+        if(control) {
+            fldFolClasID.setText(null);
+        }
+    }//GEN-LAST:event_btnFolClasAddActionPerformed
+
+    private void btnFolJazzAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFolJazzAddActionPerformed
+        int songId = Integer.parseInt(fldFolJazzID.getText());
+        boolean control = admin.insertJazz(this.user.getId(), songId);
+        updateJazzModel();
+        
+        if(control) {
+            fldFolJazzID.setText(null);
+        }
+    }//GEN-LAST:event_btnFolJazzAddActionPerformed
+
+    private void btnFolPopAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFolPopAddActionPerformed
+        int songId = Integer.parseInt(fldFolPopID.getText());
+        boolean control = admin.insertPop(this.user.getId(), songId);
+        updatePopModel();
+        
+        if(control) {
+            fldFolPopID.setText(null);
+        }
+    }//GEN-LAST:event_btnFolPopAddActionPerformed
+
+    private void btnSongsAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSongsAddActionPerformed
+        Song song = admin.getSong(Integer.parseInt(fldSongsID.getText()));
+        
+        if(song.getGenreID() == 1) {
+            int songId = Integer.parseInt(fldSongsID.getText());
+            boolean control = admin.insertPop(this.user.getId(), songId);
+            updatePopModel();
+        
+            if(control) {
+                fldFolPopID.setText(null);
+            }
+        } else if(song.getGenreID()==2) {
+            int songId = Integer.parseInt(fldSongsID.getText());
+            boolean control = admin.insertJazz(this.user.getId(), songId);
+            updateJazzModel();
+        
+            if(control) {
+                fldFolJazzID.setText(null);
+            }
+        } else {
+            int songId = Integer.parseInt(fldSongsID.getText());
+            boolean control = admin.insertClassic(this.user.getId(), songId);
+            updateClassicModel();
+        
+            if(control) {
+                fldFolClasID.setText(null);
+            }
+        }
+    }//GEN-LAST:event_btnSongsAddActionPerformed
+
+    private void btnFolPopAllAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFolPopAllAddActionPerformed
+        int user2Id = Integer.parseInt(tblFolUsers.getValueAt(tblFolUsers.getSelectedRow(), 0).toString());
+        boolean control = admin.insertAllPop(this.user.getId(), user2Id);
+        
+        updatePopModel();
+        
+        if(control) {
+            
+        }
+    }//GEN-LAST:event_btnFolPopAllAddActionPerformed
+
+    private void btnFolJazzAllAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFolJazzAllAddActionPerformed
+        int user2Id = Integer.parseInt(tblFolUsers.getValueAt(tblFolUsers.getSelectedRow(), 0).toString());
+        boolean control = admin.insertAllJazz(this.user.getId(), user2Id);
+        
+        updateJazzModel();
+        
+        if(control) {
+            
+        }
+    }//GEN-LAST:event_btnFolJazzAllAddActionPerformed
+
+    private void btnFolClasAllAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFolClasAllAddActionPerformed
+        int user2Id = Integer.parseInt(tblFolUsers.getValueAt(tblFolUsers.getSelectedRow(), 0).toString());
+        boolean control = admin.insertAllClassic(this.user.getId(), user2Id);
+        
+        updateClassicModel();
+        
+        if(control) {
+            
+        }
+    }//GEN-LAST:event_btnFolClasAllAddActionPerformed
+
+    private void tblPlaylistPopMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPlaylistPopMouseClicked
+        fldPlaylistPopID.setText(tblPlaylistPop.getValueAt(tblPlaylistPop.getSelectedRow(), 0).toString());
+    }//GEN-LAST:event_tblPlaylistPopMouseClicked
+
+    private void tblPlaylistJazzMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPlaylistJazzMouseClicked
+        fldPlaylistJazzID.setText(tblPlaylistJazz.getValueAt(tblPlaylistJazz.getSelectedRow(), 0).toString());
+    }//GEN-LAST:event_tblPlaylistJazzMouseClicked
+
+    private void tblPlaylistClassicMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPlaylistClassicMouseClicked
+        fldPlaylistClassicID.setText(tblPlaylistClassic.getValueAt(tblPlaylistClassic.getSelectedRow(), 0).toString());
+    }//GEN-LAST:event_tblPlaylistClassicMouseClicked
+
+    private void btnPlaylistPopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlaylistPopActionPerformed
+        boolean control = admin.deletePop(this.user.getId(), Integer.parseInt(fldPlaylistPopID.getText()));
+        updatePopModel();
+        if(control) {
+            fldPlaylistPopID.setText(null);
+        }
+    }//GEN-LAST:event_btnPlaylistPopActionPerformed
+
+    private void btnPlaylistJazzActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlaylistJazzActionPerformed
+        boolean control = admin.deleteJazz(this.user.getId(), Integer.parseInt(fldPlaylistJazzID.getText()));
+        updateJazzModel();
+        if(control) {
+            fldPlaylistJazzID.setText(null);
+        }
+    }//GEN-LAST:event_btnPlaylistJazzActionPerformed
+
+    private void btnPlaylistClassicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlaylistClassicActionPerformed
+        boolean control = admin.deleteClassic(this.user.getId(), Integer.parseInt(fldPlaylistClassicID.getText()));
+        updateClassicModel();
+        if(control) {
+            fldPlaylistClassicID.setText(null);
+        }
+    }//GEN-LAST:event_btnPlaylistClassicActionPerformed
+
+    private void tblTop10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTop10MouseClicked
+        fldTop10ID.setText(tblTop10.getValueAt(tblTop10.getSelectedRow(), 0).toString());
+    }//GEN-LAST:event_tblTop10MouseClicked
+
+    private void btnTop10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTop10ActionPerformed
+        Song song = admin.getSong(Integer.parseInt(fldTop10ID.getText()));
+        
+        if(song.getGenreID() == 1) {
+            int songId = Integer.parseInt(fldTop10ID.getText());
+            boolean control = admin.insertPop(this.user.getId(), songId);
+            updatePopModel();
+        
+            if(control) {
+                fldTop10ID.setText(null);
+            }
+        } else if(song.getGenreID()==2) {
+            int songId = Integer.parseInt(fldTop10ID.getText());
+            boolean control = admin.insertJazz(this.user.getId(), songId);
+            updateJazzModel();
+        
+            if(control) {
+                fldTop10ID.setText(null);
+            }
+        } else {
+            int songId = Integer.parseInt(fldTop10ID.getText());
+            boolean control = admin.insertClassic(this.user.getId(), songId);
+            updateClassicModel();
+        
+            if(control) {
+                fldTop10ID.setText(null);
+            }
+        }
+    }//GEN-LAST:event_btnTop10ActionPerformed
     
     /**
      * @param args the command line arguments
@@ -719,6 +1156,284 @@ public class UserGUI extends javax.swing.JFrame {
                 new UserGUI().setVisible(true);
             }
         });
+    }
+    
+    private void setPopModel() {
+        popModel = new DefaultTableModel();
+        Object[] colPop = new Object[8];
+        colPop[0] = "ID";
+        colPop[1] = "Ad";
+        colPop[2] = "Tarih";
+        colPop[3] = "Sanatçı";
+        colPop[4] = "Albüm";
+        colPop[5] = "Tür";
+        colPop[6] = "Süre";
+        colPop[7] = "Dinleme";
+        
+        popModel.setColumnIdentifiers(colPop);
+        popData = new Object[8];
+        for(int i=0; i<admin.getPopList(this.user.getId()).size(); i++) {
+            Artist artist = admin.getArtist(admin.getPopList(this.user.getId()).get(i).getArtistID());
+            Album album = admin.getAlbum(admin.getPopList(this.user.getId()).get(i).getAlbumID());
+            SongGenre genre = admin.getGenre(admin.getPopList(this.user.getId()).get(i).getGenreID());
+            popData[0] = admin.getPopList(this.user.getId()).get(i).getId();
+            popData[1] = admin.getPopList(this.user.getId()).get(i).getName();
+            popData[2] = admin.getPopList(this.user.getId()).get(i).getDate();
+            popData[3] = artist.getName()+artist.getSname();
+            popData[4] = album.getName();
+            popData[5] = genre.getName();
+            popData[6] = admin.getPopList(this.user.getId()).get(i).getDuration();
+            popData[7] = admin.getPopList(this.user.getId()).get(i).getPlays();
+
+            popModel.addRow(popData);
+        }
+            
+        tblPlaylistPop.setModel(popModel);
+    }
+    
+    private void updatePopModel() {
+        
+        DefaultTableModel clearModel = (DefaultTableModel)tblPlaylistPop.getModel();
+        clearModel.setRowCount(0);
+        
+        for(int i=0; i<admin.getPopList(this.user.getId()).size(); i++) {
+            Artist artist = admin.getArtist(admin.getPopList(this.user.getId()).get(i).getArtistID());
+            Album album = admin.getAlbum(admin.getPopList(this.user.getId()).get(i).getAlbumID());
+            SongGenre genre = admin.getGenre(admin.getPopList(this.user.getId()).get(i).getGenreID());
+            popData[0] = admin.getPopList(this.user.getId()).get(i).getId();
+            popData[1] = admin.getPopList(this.user.getId()).get(i).getName();
+            popData[2] = admin.getPopList(this.user.getId()).get(i).getDate();
+            popData[3] = artist.getName()+artist.getSname();
+            popData[4] = album.getName();
+            popData[5] = genre.getName();
+            popData[6] = admin.getPopList(this.user.getId()).get(i).getDuration();
+            popData[7] = admin.getPopList(this.user.getId()).get(i).getPlays();
+
+            popModel.addRow(popData);
+        }
+    }
+    
+    private void setJazzModel() {
+        jazzModel = new DefaultTableModel();
+        Object[] colJazz = new Object[8];
+        colJazz[0] = "ID";
+        colJazz[1] = "Ad";
+        colJazz[2] = "Tarih";
+        colJazz[3] = "Sanatçı";
+        colJazz[4] = "Albüm";
+        colJazz[5] = "Tür";
+        colJazz[6] = "Süre";
+        colJazz[7] = "Dinleme";
+        
+        jazzModel.setColumnIdentifiers(colJazz);
+        jazzData = new Object[8];
+        for(int i=0; i<admin.getJazzList(this.user.getId()).size(); i++) {
+            Artist artist = admin.getArtist(admin.getJazzList(this.user.getId()).get(i).getArtistID());
+            Album album = admin.getAlbum(admin.getJazzList(this.user.getId()).get(i).getAlbumID());
+            SongGenre genre = admin.getGenre(admin.getJazzList(this.user.getId()).get(i).getGenreID());
+            popData[0] = admin.getJazzList(this.user.getId()).get(i).getId();
+            popData[1] = admin.getJazzList(this.user.getId()).get(i).getName();
+            popData[2] = admin.getJazzList(this.user.getId()).get(i).getDate();
+            popData[3] = artist.getName()+artist.getSname();
+            popData[4] = album.getName();
+            popData[5] = genre.getName();
+            popData[6] = admin.getJazzList(this.user.getId()).get(i).getDuration();
+            popData[7] = admin.getJazzList(this.user.getId()).get(i).getPlays();
+
+            jazzModel.addRow(jazzData);
+        }
+            
+        tblPlaylistJazz.setModel(jazzModel);
+    }
+    
+    private void updateJazzModel() {
+        DefaultTableModel clearModel = (DefaultTableModel)tblPlaylistJazz.getModel();
+        clearModel.setRowCount(0);
+        
+        for(int i=0; i<admin.getJazzList(this.user.getId()).size(); i++) {
+            Artist artist = admin.getArtist(admin.getJazzList(this.user.getId()).get(i).getArtistID());
+            Album album = admin.getAlbum(admin.getJazzList(this.user.getId()).get(i).getAlbumID());
+            SongGenre genre = admin.getGenre(admin.getJazzList(this.user.getId()).get(i).getGenreID());
+            popData[0] = admin.getJazzList(this.user.getId()).get(i).getId();
+            popData[1] = admin.getJazzList(this.user.getId()).get(i).getName();
+            popData[2] = admin.getJazzList(this.user.getId()).get(i).getDate();
+            popData[3] = artist.getName()+artist.getSname();
+            popData[4] = album.getName();
+            popData[5] = genre.getName();
+            popData[6] = admin.getJazzList(this.user.getId()).get(i).getDuration();
+            popData[7] = admin.getJazzList(this.user.getId()).get(i).getPlays();
+
+            jazzModel.addRow(jazzData);
+        }
+    }
+    
+    private void setClassicModel() {
+        classicModel = new DefaultTableModel();
+        Object[] colClassic = new Object[8];
+        colClassic[0] = "ID";
+        colClassic[1] = "Ad";
+        colClassic[2] = "Tarih";
+        colClassic[3] = "Sanatçı";
+        colClassic[4] = "Albüm";
+        colClassic[5] = "Tür";
+        colClassic[6] = "Süre";
+        colClassic[7] = "Dinleme";
+        
+        classicModel.setColumnIdentifiers(colClassic);
+        classicData = new Object[8];
+        for(int i=0; i<admin.getClassicList(this.user.getId()).size(); i++) {
+            Artist artist = admin.getArtist(admin.getClassicList(this.user.getId()).get(i).getArtistID());
+            Album album = admin.getAlbum(admin.getClassicList(this.user.getId()).get(i).getAlbumID());
+            SongGenre genre = admin.getGenre(admin.getClassicList(this.user.getId()).get(i).getGenreID());
+            classicData[0] = admin.getClassicList(this.user.getId()).get(i).getId();
+            classicData[1] = admin.getClassicList(this.user.getId()).get(i).getName();
+            classicData[2] = admin.getClassicList(this.user.getId()).get(i).getDate();
+            classicData[3] = artist.getName()+artist.getSname();
+            classicData[4] = album.getName();
+            classicData[5] = genre.getName();
+            classicData[6] = admin.getClassicList(this.user.getId()).get(i).getDuration();
+            classicData[7] = admin.getClassicList(this.user.getId()).get(i).getPlays();
+
+            classicModel.addRow(classicData);
+        }
+            
+        tblPlaylistClassic.setModel(classicModel);
+    }
+    
+    private void updateClassicModel() {
+        DefaultTableModel clearModel = (DefaultTableModel)tblPlaylistClassic.getModel();
+        clearModel.setRowCount(0);
+        
+        for(int i=0; i<admin.getClassicList(this.user.getId()).size(); i++) {
+            Artist artist = admin.getArtist(admin.getClassicList(this.user.getId()).get(i).getArtistID());
+            Album album = admin.getAlbum(admin.getClassicList(this.user.getId()).get(i).getAlbumID());
+            SongGenre genre = admin.getGenre(admin.getClassicList(this.user.getId()).get(i).getGenreID());
+            classicData[0] = admin.getClassicList(this.user.getId()).get(i).getId();
+            classicData[1] = admin.getClassicList(this.user.getId()).get(i).getName();
+            classicData[2] = admin.getClassicList(this.user.getId()).get(i).getDate();
+            classicData[3] = artist.getName()+artist.getSname();
+            classicData[4] = album.getName();
+            classicData[5] = genre.getName();
+            classicData[6] = admin.getClassicList(this.user.getId()).get(i).getDuration();
+            classicData[7] = admin.getClassicList(this.user.getId()).get(i).getPlays();
+
+            classicModel.addRow(classicData);
+        }
+    }
+    
+    private void setFolPopModel() {
+        folPopModel = new DefaultTableModel();
+        Object[] colFolPop = new Object[8];
+        colFolPop[0] = "ID";
+        colFolPop[1] = "Ad";
+        colFolPop[2] = "Tarih";
+        colFolPop[3] = "Sanatçı";
+        colFolPop[4] = "Albüm";
+        colFolPop[5] = "Tür";
+        colFolPop[6] = "Süre";
+        colFolPop[7] = "Dinleme";
+        
+        folPopModel.setColumnIdentifiers(colFolPop);    
+        tblFolPop.setModel(folPopModel);
+    }
+    
+    private void updateFolPopModel(int id) {
+        DefaultTableModel clearModel = (DefaultTableModel)tblFolPop.getModel();
+        clearModel.setRowCount(0);
+        
+        folPopData = new Object[8];
+        for(int i=0; i<admin.getPopList(id).size(); i++) {
+            Artist artist = admin.getArtist(admin.getPopList(id).get(i).getArtistID());
+            Album album = admin.getAlbum(admin.getPopList(id).get(i).getAlbumID());
+            SongGenre genre = admin.getGenre(admin.getPopList(id).get(i).getGenreID());
+            folPopData[0] = admin.getPopList(id).get(i).getId();
+            folPopData[1] = admin.getPopList(id).get(i).getName();
+            folPopData[2] = admin.getPopList(id).get(i).getDate();
+            folPopData[3] = artist.getName()+artist.getSname();
+            folPopData[4] = album.getName();
+            folPopData[5] = genre.getName();
+            folPopData[6] = admin.getPopList(id).get(i).getDuration();
+            folPopData[7] = admin.getPopList(id).get(i).getPlays();
+
+            folPopModel.addRow(folPopData);
+        }
+    }
+    
+    private void setFolJazzModel() {
+        folJazzModel = new DefaultTableModel();
+        Object[] colFolJazz = new Object[8];
+        colFolJazz[0] = "ID";
+        colFolJazz[1] = "Ad";
+        colFolJazz[2] = "Tarih";
+        colFolJazz[3] = "Sanatçı";
+        colFolJazz[4] = "Albüm";
+        colFolJazz[5] = "Tür";
+        colFolJazz[6] = "Süre";
+        colFolJazz[7] = "Dinleme";
+        
+        folJazzModel.setColumnIdentifiers(colFolJazz);
+            
+        tblFolJazz.setModel(folJazzModel);
+    }
+    
+    private void updateFolJazzModel(int id) {
+        DefaultTableModel clearModel = (DefaultTableModel)tblFolJazz.getModel();
+        clearModel.setRowCount(0);
+        
+        folJazzData = new Object[8];
+        for(int i=0; i<admin.getJazzList(id).size(); i++) {
+            Artist artist = admin.getArtist(admin.getJazzList(id).get(i).getArtistID());
+            Album album = admin.getAlbum(admin.getJazzList(id).get(i).getAlbumID());
+            SongGenre genre = admin.getGenre(admin.getJazzList(id).get(i).getGenreID());
+            folJazzData[0] = admin.getJazzList(id).get(i).getId();
+            folJazzData[1] = admin.getJazzList(id).get(i).getName();
+            folJazzData[2] = admin.getJazzList(id).get(i).getDate();
+            folJazzData[3] = artist.getName()+artist.getSname();
+            folJazzData[4] = album.getName();
+            folJazzData[5] = genre.getName();
+            folJazzData[6] = admin.getJazzList(id).get(i).getDuration();
+            folJazzData[7] = admin.getJazzList(id).get(i).getPlays();
+
+            folJazzModel.addRow(folJazzData);
+        }
+    }
+    
+    private void setFolClassicModel() {
+        folClassicModel = new DefaultTableModel();
+        Object[] colFolClassic = new Object[8];
+        colFolClassic[0] = "ID";
+        colFolClassic[1] = "Ad";
+        colFolClassic[2] = "Tarih";
+        colFolClassic[3] = "Sanatçı";
+        colFolClassic[4] = "Albüm";
+        colFolClassic[5] = "Tür";
+        colFolClassic[6] = "Süre";
+        colFolClassic[7] = "Dinleme";
+        
+        folClassicModel.setColumnIdentifiers(colFolClassic);    
+        tblFolClass.setModel(folClassicModel);
+    }
+    
+    private void updateFolClasssicModel(int id) {
+        DefaultTableModel clearModel = (DefaultTableModel)tblFolClass.getModel();
+        clearModel.setRowCount(0);
+        
+        folClassicData = new Object[8];
+        for(int i=0; i<admin.getClassicList(id).size(); i++) {
+            Artist artist = admin.getArtist(admin.getClassicList(id).get(i).getArtistID());
+            Album album = admin.getAlbum(admin.getClassicList(id).get(i).getAlbumID());
+            SongGenre genre = admin.getGenre(admin.getClassicList(id).get(i).getGenreID());
+            folClassicData[0] = admin.getClassicList(id).get(i).getId();
+            folClassicData[1] = admin.getClassicList(id).get(i).getName();
+            folClassicData[2] = admin.getClassicList(id).get(i).getDate();
+            folClassicData[3] = artist.getName()+artist.getSname();
+            folClassicData[4] = album.getName();
+            folClassicData[5] = genre.getName();
+            folClassicData[6] = admin.getClassicList(id).get(i).getDuration();
+            folClassicData[7] = admin.getClassicList(id).get(i).getPlays();
+
+            folClassicModel.addRow(folClassicData);
+        }
     }
     
     private void setSongModel() {
@@ -805,7 +1520,7 @@ public class UserGUI extends javax.swing.JFrame {
         followModel.setColumnIdentifiers(colFollow);
         followData = new Object[5];
         for(int i=0; i<admin.getFollowList(this.user.getId()).size(); i++) {
-            SubsType subsType = admin.getSubsType(admin.getUserList().get(i).getSubscription());
+            SubsType subsType = admin.getSubsType(admin.getFollowList(this.user.getId()).get(i).getSubscription());
             followData[0] = admin.getFollowList(this.user.getId()).get(i).getId();
             followData[1] = admin.getFollowList(this.user.getId()).get(i).getName();
             followData[2] = admin.getFollowList(this.user.getId()).get(i).getSname();   
@@ -822,7 +1537,7 @@ public class UserGUI extends javax.swing.JFrame {
         clearModel.setRowCount(0);
         
         for(int i=0; i<admin.getFollowList(this.user.getId()).size(); i++) {
-            SubsType subsType = admin.getSubsType(admin.getUserList().get(i).getSubscription());
+            SubsType subsType = admin.getSubsType(admin.getFollowList(this.user.getId()).get(i).getSubscription());
             followData[0] = admin.getFollowList(this.user.getId()).get(i).getId();
             followData[1] = admin.getFollowList(this.user.getId()).get(i).getName();
             followData[2] = admin.getFollowList(this.user.getId()).get(i).getSname();   
@@ -831,6 +1546,44 @@ public class UserGUI extends javax.swing.JFrame {
             followModel.addRow(followData);
         }
     } 
+    
+    private void setTop10Model() {
+        top10Model = new DefaultTableModel();
+        Object[] coltop10 = new Object[8];
+        coltop10[0] = "ID";
+        coltop10[1] = "Ad";
+        coltop10[2] = "Tarih";
+        coltop10[3] = "Sanatçı";
+        coltop10[4] = "Albüm";
+        coltop10[5] = "Tür";
+        coltop10[6] = "Süre";
+        coltop10[7] = "Dinleme";
+        
+        top10Model.setColumnIdentifiers(coltop10);
+        top10Data = new Object[8];
+        for(int i=0; i<admin.getTop10List(this.user.getCountry()).size(); i++) {
+            Artist artist = admin.getArtist(admin.getTop10List(this.user.getCountry()).get(i).getArtistID());
+            Album album = admin.getAlbum(admin.getTop10List(this.user.getCountry()).get(i).getAlbumID());
+            SongGenre genre = admin.getGenre(admin.getTop10List(this.user.getCountry()).get(i).getGenreID());
+            top10Data[0] = admin.getTop10List(this.user.getCountry()).get(i).getId();
+            top10Data[1] = admin.getTop10List(this.user.getCountry()).get(i).getName();
+            top10Data[2] = admin.getTop10List(this.user.getCountry()).get(i).getDate();
+            top10Data[3] = artist.getName()+artist.getSname();
+            top10Data[4] = album.getName();
+            top10Data[5] = genre.getName();
+            top10Data[6] = admin.getTop10List(this.user.getCountry()).get(i).getDuration();
+            top10Data[7] = admin.getTop10List(this.user.getCountry()).get(i).getPlays();
+
+            top10Model.addRow(top10Data);
+            
+            if(i==9) {
+                break;
+            }
+        }
+        
+        lblTop10Country.setText(this.user.getCountry());
+        tblTop10.setModel(top10Model);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnFolClasAdd;
@@ -839,13 +1592,21 @@ public class UserGUI extends javax.swing.JFrame {
     private javax.swing.JButton btnFolJazzAllAdd;
     private javax.swing.JButton btnFolPopAdd;
     private javax.swing.JButton btnFolPopAllAdd;
+    private javax.swing.JButton btnPlaylistClassic;
+    private javax.swing.JButton btnPlaylistJazz;
+    private javax.swing.JButton btnPlaylistPop;
     private javax.swing.JButton btnSongsAdd;
     private javax.swing.JButton btnSongsPlay;
+    private javax.swing.JButton btnTop10;
     private javax.swing.JButton btnUserAdd;
     private javax.swing.JTextField fldFolClasID;
     private javax.swing.JTextField fldFolJazzID;
     private javax.swing.JTextField fldFolPopID;
+    private javax.swing.JTextField fldPlaylistClassicID;
+    private javax.swing.JTextField fldPlaylistJazzID;
+    private javax.swing.JTextField fldPlaylistPopID;
     private javax.swing.JTextField fldSongsID;
+    private javax.swing.JTextField fldTop10ID;
     private javax.swing.JTextField fldUserID;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel lblFolClasID;
@@ -856,20 +1617,26 @@ public class UserGUI extends javax.swing.JFrame {
     private javax.swing.JLabel lblFolPopID;
     private javax.swing.JLabel lblLogo;
     private javax.swing.JLabel lblPlaylistClassic;
+    private javax.swing.JLabel lblPlaylistClassicID;
     private javax.swing.JLabel lblPlaylistJazz;
+    private javax.swing.JLabel lblPlaylistJazzID;
     private javax.swing.JLabel lblPlaylistPop;
+    private javax.swing.JLabel lblPlaylistPopID;
     private javax.swing.JLabel lblSongsID;
     private javax.swing.JLabel lblSongsPlayDrt;
     private javax.swing.JLabel lblSongsPlayName;
     private javax.swing.JLabel lblSoundguin;
     private javax.swing.JLabel lblSubs;
+    private javax.swing.JLabel lblTop10Country;
+    private javax.swing.JLabel lblTop10ID;
     private javax.swing.JLabel lblUserID;
     private javax.swing.JLabel lblUsername;
     private javax.swing.JLabel lblWelcome;
     private javax.swing.JPanel pnlFollowings;
-    private javax.swing.JPanel pnlPlay;
     private javax.swing.JPanel pnlPlaylists;
     private javax.swing.JPanel pnlSongs;
+    private javax.swing.JPanel pnlSongsPlay;
+    private javax.swing.JPanel pnlTop10;
     private javax.swing.JPanel pnlUser;
     private javax.swing.JPanel pnlUsers;
     private javax.swing.JPanel pnlWelcome;
@@ -881,6 +1648,7 @@ public class UserGUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane scrllPlaylistJazz;
     private javax.swing.JScrollPane scrllPlaylistPop;
     private javax.swing.JScrollPane scrllSongs;
+    private javax.swing.JScrollPane scrllTop10;
     private javax.swing.JScrollPane scrllUsers;
     private javax.swing.JTable tblFolClass;
     private javax.swing.JTable tblFolJazz;
@@ -890,6 +1658,7 @@ public class UserGUI extends javax.swing.JFrame {
     private javax.swing.JTable tblPlaylistJazz;
     private javax.swing.JTable tblPlaylistPop;
     private javax.swing.JTable tblSongs;
+    private javax.swing.JTable tblTop10;
     private javax.swing.JTable tblUsers;
     // End of variables declaration//GEN-END:variables
 }
