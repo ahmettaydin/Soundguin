@@ -770,6 +770,9 @@ public class AdminGUI extends javax.swing.JFrame {
         updateArtistTable();
         updateSongTable();
         updateAlbumTable();
+        updatePopTable();
+        updateJazzTable();
+        updateClassicTable();
         if(control) {
             fldIDArtist.setText(null);
         }
@@ -784,6 +787,9 @@ public class AdminGUI extends javax.swing.JFrame {
         boolean control = admin.deleteAlbum(Integer.parseInt(fldIDAlbum.getText()));
         updateAlbumTable();
         updateSongTable();
+        updatePopTable();
+        updateJazzTable();
+        updateClassicTable();
         if(control) {
             fldIDAlbum.setText(null);
         }
@@ -970,16 +976,17 @@ public class AdminGUI extends javax.swing.JFrame {
     
     private void setSubsModel() {
         subsModel = new DefaultTableModel();
-        Object[] colSubs = new Object[2];
+        Object[] colSubs = new Object[3];
         colSubs[0] = "ID";
         colSubs[1] = "Abonelik";
+        colSubs[2] = "Ödendi";
         
         subsModel.setColumnIdentifiers(colSubs);
-        subsData = new Object[2];
+        subsData = new Object[3];
         for(int i=0; i<admin.getSubsTypeList().size(); i++) {
             subsData[0] = admin.getSubsTypeList().get(i).getId();
             subsData[1] = admin.getSubsTypeList().get(i).getName();
-            
+            subsData[2] = admin.getSubsTypeList().get(i).getIsPaid();
             subsModel.addRow(subsData);
         }
         
@@ -1076,10 +1083,22 @@ public class AdminGUI extends javax.swing.JFrame {
             popData[0] = admin.getAdminPopList().get(i).getUserID();
             popData[1] = admin.getAdminPopList().get(i).getSongID();
             
-            songModel.addRow(songData);
+            popModel.addRow(popData);
         }
             
         tblPops.setModel(popModel);
+    }
+    
+    private void updatePopTable() {
+        DefaultTableModel clearModel = (DefaultTableModel)tblPops.getModel();
+        clearModel.setRowCount(0);
+        
+        for(int i=0; i<admin.getAdminPopList().size(); i++) {
+            popData[0] = admin.getAdminPopList().get(i).getUserID();
+            popData[1] = admin.getAdminPopList().get(i).getSongID();
+            
+            popModel.addRow(popData);
+        }
     }
     
     private void setJazzModel() {
@@ -1100,6 +1119,18 @@ public class AdminGUI extends javax.swing.JFrame {
         tblJazzes.setModel(jazzModel);
     }
     
+    private void updateJazzTable() {
+        DefaultTableModel clearModel = (DefaultTableModel)tblJazzes.getModel();
+        clearModel.setRowCount(0);
+        
+        for(int i=0; i<admin.getAdminJazzList().size(); i++) {
+            jazzData[0] = admin.getAdminJazzList().get(i).getUserID();
+            jazzData[1] = admin.getAdminJazzList().get(i).getSongID();
+            
+            jazzModel.addRow(jazzData);
+        }
+    }
+    
     private void setClassicModel() {
         classicModel = new DefaultTableModel();
         Object[] colClassic = new Object[2];
@@ -1116,6 +1147,18 @@ public class AdminGUI extends javax.swing.JFrame {
         }
             
         tblClassics.setModel(classicModel);
+    }
+    
+    private void updateClassicTable() {
+        DefaultTableModel clearModel = (DefaultTableModel)tblClassics.getModel();
+        clearModel.setRowCount(0);
+        
+        for(int i=0; i<admin.getAdminClassicList().size(); i++) {
+            classicData[0] = admin.getAdminClassicList().get(i).getUserID();
+            classicData[1] = admin.getAdminClassicList().get(i).getSongID();
+            
+            classicModel.addRow(classicData);
+        }
     }
     
     private void setFollowModel() {

@@ -12,10 +12,12 @@ package Objects;
 public class SubsType {
     private int id;
     private String name;
+    private int isPaid;
 
-    public SubsType(int id, String name) {
+    public SubsType(int id, String name, int isPaid) {
         this.id = id;
         this.name = name;
+        this.isPaid = isPaid;
     }
 
     public int getId() {
@@ -24,5 +26,9 @@ public class SubsType {
 
     public String getName() {
         return name;
+    }
+    
+    public int getIsPaid() {
+        return isPaid;
     }
 }

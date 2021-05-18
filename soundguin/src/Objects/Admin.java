@@ -129,7 +129,8 @@ public class Admin {
             while (resultSet.next()) {
                 subsType = new SubsType(
                         resultSet.getInt("id"),
-                        resultSet.getString("type")
+                        resultSet.getString("type"),
+                        resultSet.getInt("paid")
                 );
             }
         } catch (SQLException ex) {
@@ -349,7 +350,8 @@ public class Admin {
             while (resultSet.next()) {
                 subsTypes.add(new SubsType(
                         resultSet.getInt("id"),
-                        resultSet.getString("type")
+                        resultSet.getString("type"),
+                        resultSet.getInt("paid")
                 ));
             }
         } catch (SQLException ex) {
