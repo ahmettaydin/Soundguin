@@ -739,6 +739,7 @@ public class AdminGUI extends javax.swing.JFrame {
     private void btnDeleteUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteUserActionPerformed
         boolean control = admin.deleteUser(Integer.parseInt(fldID.getText()));
         updateUserTable();
+        updateFollowTable();
         
         if(control) {
             fldID.setText(null);
@@ -767,7 +768,8 @@ public class AdminGUI extends javax.swing.JFrame {
     private void btnDeleteArtistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteArtistActionPerformed
         boolean control = admin.deleteArtist(Integer.parseInt(fldIDArtist.getText()));
         updateArtistTable();
-        
+        updateSongTable();
+        updateAlbumTable();
         if(control) {
             fldIDArtist.setText(null);
         }
@@ -781,7 +783,7 @@ public class AdminGUI extends javax.swing.JFrame {
     private void btnDeleteAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteAlbumActionPerformed
         boolean control = admin.deleteAlbum(Integer.parseInt(fldIDAlbum.getText()));
         updateAlbumTable();
-        
+        updateSongTable();
         if(control) {
             fldIDAlbum.setText(null);
         }
@@ -921,23 +923,21 @@ public class AdminGUI extends javax.swing.JFrame {
     
     private void setAlbumModel() {
         albumModel = new DefaultTableModel();
-        Object[] colAlbum = new Object[6];
+        Object[] colAlbum = new Object[5];
         colAlbum[0] = "ID";
         colAlbum[1] = "Ad";
         colAlbum[2] = "Tarih";
-        colAlbum[3] = "Şarkı";
-        colAlbum[4] = "Sanatçı";
-        colAlbum[5] = "Tür";
+        colAlbum[3] = "Sanatçı";
+        colAlbum[4] = "Tür";
         
         albumModel.setColumnIdentifiers(colAlbum);
-        albumData = new Object[6];
+        albumData = new Object[5];
         for(int i=0; i<admin.getAlbumList().size(); i++) {
             albumData[0] = admin.getAlbumList().get(i).getId();
             albumData[1] = admin.getAlbumList().get(i).getName();
             albumData[2] = admin.getAlbumList().get(i).getDate();
-            albumData[3] = admin.getAlbumList().get(i).getSongID();
-            albumData[4] = admin.getAlbumList().get(i).getArtistID();
-            albumData[5] = admin.getAlbumList().get(i).getGenreID();
+            albumData[3] = admin.getAlbumList().get(i).getArtistID();
+            albumData[4] = admin.getAlbumList().get(i).getGenreID();
 
 
             albumModel.addRow(albumData);
@@ -1058,9 +1058,8 @@ public class AdminGUI extends javax.swing.JFrame {
             albumData[0] = admin.getAlbumList().get(i).getId();
             albumData[1] = admin.getAlbumList().get(i).getName();
             albumData[2] = admin.getAlbumList().get(i).getDate();
-            albumData[3] = admin.getAlbumList().get(i).getSongID();
-            albumData[4] = admin.getAlbumList().get(i).getArtistID();
-            albumData[5] = admin.getAlbumList().get(i).getGenreID();
+            albumData[3] = admin.getAlbumList().get(i).getArtistID();
+            albumData[4] = admin.getAlbumList().get(i).getGenreID();
             albumModel.addRow(albumData);
         }
     }
@@ -1135,6 +1134,18 @@ public class AdminGUI extends javax.swing.JFrame {
         }
             
         tblFollow.setModel(followModel);
+    }
+    
+    private void updateFollowTable() {
+        DefaultTableModel clearModel = (DefaultTableModel)tblFollow.getModel();
+        clearModel.setRowCount(0);
+        
+        for(int i=0; i<admin.getAdminFollowList().size(); i++) {
+            followData[0] = admin.getAdminFollowList().get(i).getUserID1();
+            followData[1] = admin.getAdminFollowList().get(i).getUserID2();
+            
+            followModel.addRow(followData);
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

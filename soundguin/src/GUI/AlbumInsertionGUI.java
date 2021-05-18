@@ -49,10 +49,8 @@ public class AlbumInsertionGUI extends javax.swing.JFrame {
         pnlAlbumInsertion = new javax.swing.JPanel();
         lblName = new javax.swing.JLabel();
         lblDate = new javax.swing.JLabel();
-        lblSong = new javax.swing.JLabel();
         fldName = new javax.swing.JTextField();
         fldDate = new javax.swing.JTextField();
-        fldSong = new javax.swing.JTextField();
         btnAdd = new javax.swing.JButton();
         lblLogo = new javax.swing.JLabel();
         lblArtist = new javax.swing.JLabel();
@@ -73,18 +71,11 @@ public class AlbumInsertionGUI extends javax.swing.JFrame {
         lblDate.setForeground(new java.awt.Color(255, 255, 255));
         lblDate.setText("Tarih:");
 
-        lblSong.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        lblSong.setForeground(new java.awt.Color(255, 255, 255));
-        lblSong.setText("Şarkı:");
-
         fldName.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         fldName.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         fldDate.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         fldDate.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-
-        fldSong.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        fldSong.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         btnAdd.setFont(new java.awt.Font("Verdana", 1, 10)); // NOI18N
         btnAdd.setText("Ekle");
@@ -120,53 +111,49 @@ public class AlbumInsertionGUI extends javax.swing.JFrame {
                     .addGroup(pnlAlbumInsertionLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(pnlAlbumInsertionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblLogo, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblLogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(pnlAlbumInsertionLayout.createSequentialGroup()
-                                .addComponent(lblGenre, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblGenre, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(pnlAlbumInsertionLayout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addGroup(pnlAlbumInsertionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(pnlAlbumInsertionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(pnlAlbumInsertionLayout.createSequentialGroup()
-                                .addComponent(lblDate, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(pnlAlbumInsertionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(fldDate, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
-                                    .addComponent(fldName, javax.swing.GroupLayout.Alignment.LEADING)))
+                                .addGap(10, 10, 10)
+                                .addGroup(pnlAlbumInsertionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(pnlAlbumInsertionLayout.createSequentialGroup()
+                                        .addComponent(lblName, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(fldName, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(pnlAlbumInsertionLayout.createSequentialGroup()
+                                        .addComponent(lblArtist, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(pnlAlbumInsertionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(fldArtist, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
+                                            .addComponent(fldGenre)))))
                             .addGroup(pnlAlbumInsertionLayout.createSequentialGroup()
-                                .addGroup(pnlAlbumInsertionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(lblName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(lblSong, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
-                                    .addComponent(lblArtist, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(pnlAlbumInsertionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(fldSong, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
-                                    .addComponent(fldArtist)
-                                    .addComponent(fldGenre))))
+                                .addGap(126, 126, 126)
+                                .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlAlbumInsertionLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(lblDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(fldDate, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 38, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(pnlAlbumInsertionLayout.createSequentialGroup()
-                .addGap(126, 126, 126)
-                .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(137, Short.MAX_VALUE))
         );
         pnlAlbumInsertionLayout.setVerticalGroup(
             pnlAlbumInsertionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlAlbumInsertionLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(28, 28, 28)
                 .addGroup(pnlAlbumInsertionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblName)
-                    .addComponent(fldName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fldName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblName))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlAlbumInsertionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblDate)
                     .addComponent(fldDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlAlbumInsertionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(fldSong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblSong))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlAlbumInsertionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblArtist)
@@ -177,7 +164,7 @@ public class AlbumInsertionGUI extends javax.swing.JFrame {
                     .addComponent(fldGenre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -200,14 +187,12 @@ public class AlbumInsertionGUI extends javax.swing.JFrame {
                 fldName.getText(),
                 fldDate.getText(),
                 Integer.parseInt(fldArtist.getText()),
-                Integer.parseInt(fldSong.getText()),
                 Integer.parseInt(fldGenre.getText()));
 
             if(control) {
                 fldName.setText(null);
                 fldDate.setText(null);
                 fldArtist.setText(null);
-                fldSong.setText(null);
                 fldGenre.setText(null);
             }
         } else if(status == 1) {
@@ -216,19 +201,18 @@ public class AlbumInsertionGUI extends javax.swing.JFrame {
                     fldName.getText(), 
                     fldDate.getText(), 
                     Integer.parseInt(fldArtist.getText()),
-                    Integer.parseInt(fldSong.getText()),
                     Integer.parseInt(fldGenre.getText()));
             
             if(control) {
                 fldName.setText(null);
                 fldDate.setText(null);
                 fldArtist.setText(null);
-                fldSong.setText(null);
                 fldGenre.setText(null);
             }
         }
 
         adminGUI.updateAlbumTable();
+        adminGUI.updateSongTable();
     }//GEN-LAST:event_btnAddActionPerformed
 
     /**
@@ -272,13 +256,11 @@ public class AlbumInsertionGUI extends javax.swing.JFrame {
     private javax.swing.JTextField fldDate;
     private javax.swing.JTextField fldGenre;
     private javax.swing.JTextField fldName;
-    private javax.swing.JTextField fldSong;
     private javax.swing.JLabel lblArtist;
     private javax.swing.JLabel lblDate;
     private javax.swing.JLabel lblGenre;
     private javax.swing.JLabel lblLogo;
     private javax.swing.JLabel lblName;
-    private javax.swing.JLabel lblSong;
     private javax.swing.JPanel pnlAlbumInsertion;
     // End of variables declaration//GEN-END:variables
 }

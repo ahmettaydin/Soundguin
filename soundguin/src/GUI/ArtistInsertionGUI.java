@@ -184,6 +184,7 @@ public class ArtistInsertionGUI extends javax.swing.JFrame {
             }
         }
         adminGUI.updateArtistTable();
+        adminGUI.updateSongTable();
     }//GEN-LAST:event_btnAddActionPerformed
 
     /**

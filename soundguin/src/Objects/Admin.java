@@ -89,7 +89,6 @@ public class Admin {
                         resultSet.getInt("id"),
                         resultSet.getString("name"),
                         resultSet.getString("date"),
-                        resultSet.getInt("songID"),
                         resultSet.getInt("artistID"),
                         resultSet.getInt("genreID")
                 );
@@ -331,7 +330,6 @@ public class Admin {
                         resultSet.getInt("id"),
                         resultSet.getString("name"),
                         resultSet.getString("date"),
-                        resultSet.getInt("songID"),
                         resultSet.getInt("artistID"),
                         resultSet.getInt("genreID")
                 ));
@@ -437,7 +435,103 @@ public class Admin {
         ArrayList<Song> songs = new ArrayList<Song>();
         try {
             statement = connection.createStatement();
-            resultSet = statement.executeQuery("select * from songs where artistID in (select id from artists where country='"+country+"') order by duration desc");
+            resultSet = statement.executeQuery("select * from songs where artistID in (select id from artists where country='"+country+"') order by plays desc");
+            while (resultSet.next()) {
+                songs.add(new Song(
+                        resultSet.getInt("id"),
+                        resultSet.getString("name"),
+                        resultSet.getString("date"),
+                        resultSet.getInt("artistID"),
+                        resultSet.getInt("albumID"),
+                        resultSet.getInt("genreID"),
+                        resultSet.getString("duration"),
+                        resultSet.getInt("plays")
+                ));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return songs;
+    }
+    
+    public ArrayList<Song> getTop10PopList() {
+        ArrayList<Song> songs = new ArrayList<Song>();
+        try {
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery("select * from songs where genreID = 1 order by plays desc");
+            while (resultSet.next()) {
+                songs.add(new Song(
+                        resultSet.getInt("id"),
+                        resultSet.getString("name"),
+                        resultSet.getString("date"),
+                        resultSet.getInt("artistID"),
+                        resultSet.getInt("albumID"),
+                        resultSet.getInt("genreID"),
+                        resultSet.getString("duration"),
+                        resultSet.getInt("plays")
+                ));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return songs;
+    }
+    
+    public ArrayList<Song> getTop10JazzList() {
+        ArrayList<Song> songs = new ArrayList<Song>();
+        try {
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery("select * from songs where genreID = 2 order by plays desc");
+            while (resultSet.next()) {
+                songs.add(new Song(
+                        resultSet.getInt("id"),
+                        resultSet.getString("name"),
+                        resultSet.getString("date"),
+                        resultSet.getInt("artistID"),
+                        resultSet.getInt("albumID"),
+                        resultSet.getInt("genreID"),
+                        resultSet.getString("duration"),
+                        resultSet.getInt("plays")
+                ));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return songs;
+    }
+    
+    public ArrayList<Song> getTop10ClassicList() {
+        ArrayList<Song> songs = new ArrayList<Song>();
+        try {
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery("select * from songs where genreID = 3 order by plays desc");
+            while (resultSet.next()) {
+                songs.add(new Song(
+                        resultSet.getInt("id"),
+                        resultSet.getString("name"),
+                        resultSet.getString("date"),
+                        resultSet.getInt("artistID"),
+                        resultSet.getInt("albumID"),
+                        resultSet.getInt("genreID"),
+                        resultSet.getString("duration"),
+                        resultSet.getInt("plays")
+                ));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return songs;
+    }
+    
+    public ArrayList<Song> getTop10AllList() {
+        ArrayList<Song> songs = new ArrayList<Song>();
+        try {
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery("select * from songs order by plays desc");
             while (resultSet.next()) {
                 songs.add(new Song(
                         resultSet.getInt("id"),
@@ -703,8 +797,8 @@ public class Admin {
 
     }
 
-    public boolean insertAlbum(String name, String date, int artist, int song, int genre) {
-        String query = "insert into albums (name, date, artistID, songID, genreID) values(?,?,?,?,?)";
+    public boolean insertAlbum(String name, String date, int artist, int genre) {
+        String query = "insert into albums (name, date, artistID, genreID) values(?,?,?,?)";
         int key = 0;
         try {
             statement = connection.createStatement();
@@ -712,8 +806,7 @@ public class Admin {
             preparedStatement.setString(1, name);
             preparedStatement.setString(2, date);
             preparedStatement.setInt(3, artist);
-            preparedStatement.setInt(4, song);
-            preparedStatement.setInt(5, genre);
+            preparedStatement.setInt(4, genre);
             preparedStatement.executeUpdate();
             key = 1;
         } catch (SQLException ex) {
@@ -729,8 +822,8 @@ public class Admin {
         }
     }
 
-    public boolean updateAlbum(int id, String name, String date, int artist, int song, int genre) {
-        String query = "update albums set name = ?, date = ?, artistID = ?, songID = ?, genreID  = ? where id = ?";
+    public boolean updateAlbum(int id, String name, String date, int artist, int genre) {
+        String query = "update albums set name = ?, date = ?, artistID = ?, genreID  = ? where id = ?";
         int key = 0;
         try {
             statement = connection.createStatement();
@@ -738,9 +831,8 @@ public class Admin {
             preparedStatement.setString(1, name);
             preparedStatement.setString(2, date);
             preparedStatement.setInt(3, artist);
-            preparedStatement.setInt(4, song);
-            preparedStatement.setInt(5, genre);
-            preparedStatement.setInt(6, id);
+            preparedStatement.setInt(4, genre);
+            preparedStatement.setInt(5, id);
             preparedStatement.executeUpdate();
             key = 1;
         } catch (SQLException ex) {
@@ -779,6 +871,30 @@ public class Admin {
 
     public boolean insertFollow(int id1, int id2) {
         String query = "insert into follow (userID1, userID2) values(?,?)";
+
+        int key = 0;
+        try {
+            statement = connection.createStatement();
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, id1);
+            preparedStatement.setInt(2, id2);
+            preparedStatement.executeUpdate();
+            key = 1;
+        } catch (SQLException ex) {
+            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        if (key == 1) {
+            JOptionPane.showMessageDialog(null, "Başarılı");
+            return true;
+        } else {
+            JOptionPane.showMessageDialog(null, "Başarısız");
+            return false;
+        }
+    }
+    
+    public boolean deleteFollow(int id1, int id2) {
+        String query = "delete from follow where userID1 = ? and userID2 = ?";
 
         int key = 0;
         try {

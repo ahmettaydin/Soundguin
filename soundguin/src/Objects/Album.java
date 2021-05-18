@@ -13,15 +13,13 @@ public class Album {
     private int id;
     private String name;
     private String date;
-    private int songID;
     private int artistID;
     private int genreID;
 
-    public Album(int id, String name, String date, int songID, int artistID, int genreID) {
+    public Album(int id, String name, String date, int artistID, int genreID) {
         this.id = id;
         this.name = name;
         this.date = date;
-        this.songID = songID;
         this.artistID = artistID;
         this.genreID = genreID;
     }
@@ -36,10 +34,6 @@ public class Album {
 
     public String getDate() {
         return date;
-    }
-
-    public int getSongID() {
-        return songID;
     }
 
     public int getArtistID() {
