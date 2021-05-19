@@ -754,7 +754,9 @@ public class AdminGUI extends javax.swing.JFrame {
     private void btnDeleteSongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteSongActionPerformed
         boolean control = admin.deleteSong(Integer.parseInt(fldIDSong.getText()));
         updateSongTable();
-        
+        updatePopTable();
+        updateJazzTable();
+        updateClassicTable();
         if(control) {
             fldIDSong.setText(null);
         }

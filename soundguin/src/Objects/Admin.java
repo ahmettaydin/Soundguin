@@ -1073,7 +1073,7 @@ public class Admin {
         for (int i = 0; i < pop2.size(); i++) {
             int key2 = 0;
             for (int j = 0; j < pop1.size(); j++) {
-                if (pop2.get(i).getId() != pop1.get(j).getId()) {
+                if (pop2.get(i).getId() == pop1.get(j).getId()) {
                     key2 = 1;
                 }
             }
@@ -1110,7 +1110,7 @@ public class Admin {
         for (int i = 0; i < jazz2.size(); i++) {
             int key2 = 0;
             for (int j = 0; j < jazz1.size(); j++) {
-                if (jazz2.get(i).getId() != jazz1.get(j).getId()) {
+                if (jazz2.get(i).getId() == jazz1.get(j).getId()) {
                     key2 = 1;
                 }
             }
